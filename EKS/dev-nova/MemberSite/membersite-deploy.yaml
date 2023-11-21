@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    CapacityProvisioned: 0.25vCPU 1GB
+  name: membersite-deployment
+  labels:
+    app: membersite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: membersite
+  template:
+    metadata:
+      labels:
+        app: membersite
+    spec:
+      containers:
+        - name: membersite
+          image: harbor.ailabpte.co/membersite/membersite:d06ed67
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: membersite-configmap
+                  key: environment
+            - name: ServiceType
+              value: API
+          volumeMounts:
+            - name: membersite-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+      volumes:
+        - name: membersite-appsettings
+          configMap:
+            name: membersite-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+      imagePullSecrets:
+        - name: harbor-secret

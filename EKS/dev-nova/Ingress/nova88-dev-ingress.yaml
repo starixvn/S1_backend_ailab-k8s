@@ -33,4 +33,14 @@ spec:
             name: adminsite-service
             port:
               number: 80
+  - host: membersite.nova88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: membersite-service
+            port:
+              number: 80
 
