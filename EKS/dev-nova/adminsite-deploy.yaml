@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    CapacityProvisioned: 0.25vCPU 1GB
   name: adminsite-deployment
   labels:
     app: adminsite
@@ -17,15 +19,14 @@ spec:
       containers:
         - name: adminsite
           image: harbor.ailabpte.co/adminsite/backendsite:53bf5c9
-          resources:
-            requests:
-              memory: "500Mi"
-              cpu: "0.5"
           ports:
             - containerPort: 5070
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              value: "Development"
+              valueFrom:
+                configMapKeyRef:
+                  name: adminsite-configmap
+                  key: environment
             - name: ServiceType
               value: API
           volumeMounts:

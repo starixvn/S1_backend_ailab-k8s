@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: adminsite-configmap  
 data:
+  environment: Development  
   appsettings.Development: |
     {     
       "ElasticApm": {

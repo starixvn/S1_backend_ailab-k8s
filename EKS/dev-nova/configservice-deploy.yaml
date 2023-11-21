@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    CapacityProvisioned: 0.25vCPU 0.5GB
+    CapacityProvisioned: 0.25vCPU 1GB
   name: configservice-deployment
   labels:
     app: configservice
