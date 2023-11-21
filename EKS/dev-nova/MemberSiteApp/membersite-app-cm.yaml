@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: membersiteapp-configmap
+data:
+  environment: Development.APP
+  appsettings.Development.APP: |
+    {     
+      "ElasticApm": {
+        "ServiceName": "MemberSite",
+        "ServiceVersion": "v1.0",
+        "Environment": "Development",
+        "LogLevel": "Info",
+        "ServerUrl": "http://54.151.226.243:8200",
+        "TransactionIgnoreUrls": "/health",
+        "TransactionSampleRate": 1.0,
+        "MaxBatchEventCount": 10
+        },	      
+      "ConfigService": [ "http://configservice-service" ] 
+    }

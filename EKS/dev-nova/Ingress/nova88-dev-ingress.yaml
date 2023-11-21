@@ -43,4 +43,15 @@ spec:
             name: membersite-service
             port:
               number: 80
+  - host: membersiteapp.nova88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: membersite-app-service
+            port:
+              number: 80
+
 
