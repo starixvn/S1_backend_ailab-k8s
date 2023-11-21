@@ -23,4 +23,14 @@ spec:
             name: configservice-service
             port:
               number: 80
+  - host: adminsite.nova88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: adminsite-service
+            port:
+              number: 80
 

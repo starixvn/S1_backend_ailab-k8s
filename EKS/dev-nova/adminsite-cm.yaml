@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: adminsite-configmap  
+data:
+  appsettings.Development: |
+    {     
+      "ElasticApm": {
+        "ServiceName": "BackendSite",
+        "ServiceVersion": "v1.0",
+        "Environment": "Development",
+        "LogLevel": "Info",
+        "ServerUrl": "http://54.151.226.243:8200",
+        "TransactionIgnoreUrls": "/health",
+        "TransactionSampleRate": 1.0,
+        "MaxBatchEventCount": 10
+        },	
+      "RedisConnection": "172.31.37.211:6379,172.31.44.25:6379,password=Aa12345678!,ssl=false,syncTimeout=6000",
+      "ConfigService": [ "http://configservice-service" ] 
+    }

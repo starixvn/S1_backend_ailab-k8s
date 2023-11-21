@@ -11,4 +11,4 @@ spec:
     targetPort: 7242
   selector:
     app: configservice
-  type: NodePort
+  type: ClusterIP

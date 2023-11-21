@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adminsite-deployment
+  labels:
+    app: adminsite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adminsite  
+  template:
+    metadata:
+      labels:
+        app: adminsite      
+    spec:
+      containers:
+        - name: adminsite
+          image: harbor.ailabpte.co/adminsite/backendsite:53bf5c9
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "0.5"
+          ports:
+            - containerPort: 5070
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+            - name: ServiceType
+              value: API
+          volumeMounts:
+            - name: adminsite-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+      volumes:
+        - name: adminsite-appsettings
+          configMap:
+            name: adminsite-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+      imagePullSecrets:
+        - name: harbor-secret
