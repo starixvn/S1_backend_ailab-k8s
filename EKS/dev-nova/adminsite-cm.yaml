@@ -14,7 +14,6 @@ data:
         "TransactionIgnoreUrls": "/health",
         "TransactionSampleRate": 1.0,
         "MaxBatchEventCount": 10
-        },	
-      "RedisConnection": "172.31.37.211:6379,172.31.44.25:6379,password=Aa12345678!,ssl=false,syncTimeout=6000",
+        },	      
       "ConfigService": [ "http://configservice-service" ] 
     }
