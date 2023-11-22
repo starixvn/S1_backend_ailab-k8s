@@ -13,7 +13,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: config.nova88dev.com
+  - host: configservice.nova88dev.com
     http:
       paths:
       - path: /
@@ -23,7 +23,7 @@ spec:
             name: configservice-service
             port:
               number: 80
-  - host: adminsite.nova88dev.com
+  - host: adminsiteservice.nova88dev.com
     http:
       paths:
       - path: /
@@ -33,7 +33,7 @@ spec:
             name: adminsite-service
             port:
               number: 80
-  - host: membersite.nova88dev.com
+  - host: membersiteservice.nova88dev.com
     http:
       paths:
       - path: /
@@ -43,7 +43,7 @@ spec:
             name: membersite-service
             port:
               number: 80
-  - host: membersiteapp.nova88dev.com
+  - host: membersiteappservice.nova88dev.com
     http:
       paths:
       - path: /
@@ -73,7 +73,7 @@ spec:
             name: commonservice-service
             port:
               number: 80
-  - host: geoip.nova88dev.com
+  - host: geoipservice.nova88dev.com
     http:
       paths:
       - path: /
@@ -83,7 +83,7 @@ spec:
             name: geoipservice-service
             port:
               number: 80
-  - host: hangfire.nova88dev.com
+  - host: hangfireservice.nova88dev.com
     http:
       paths:
       - path: /
@@ -91,6 +91,16 @@ spec:
         backend:
           service:
             name: hangfireservice-service
+            port:
+              number: 80
+  - host: paymentservice.nova88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: payservice-service
             port:
               number: 80
 
