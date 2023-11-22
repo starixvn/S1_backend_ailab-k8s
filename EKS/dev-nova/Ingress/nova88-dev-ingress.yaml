@@ -63,5 +63,15 @@ spec:
             name: bonusservice-service
             port:
               number: 80
+  - host: commonservice.nova88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: commonservice-service
+            port:
+              number: 80
 
 
