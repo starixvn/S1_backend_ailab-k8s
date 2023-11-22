@@ -103,4 +103,14 @@ spec:
             name: payservice-service
             port:
               number: 80
+  - host: storeservice.nova88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: storeservice-service
+            port:
+              number: 80
 
