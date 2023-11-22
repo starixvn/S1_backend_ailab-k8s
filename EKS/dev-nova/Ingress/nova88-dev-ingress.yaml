@@ -83,5 +83,14 @@ spec:
             name: geoipservice-service
             port:
               number: 80
-
+  - host: hangfire.nova88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: hangfireservice-service
+            port:
+              number: 80
 
