@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storehangfireservice-deployment
+  labels:
+    app: storehangfireservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storehangfireservice
+  template:
+    metadata:
+      labels:
+        app: storehangfireservice
+    spec:
+      containers:
+        - name: storehangfireservice
+          image: harbor.ailabpte.co/storeservice/storehangfireservice:e14b360
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.25"
+              memory: "0.5G" 
+          ports:
+            - containerPort: 51003
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: storehangfireservice-configmap
+                  key: environment
+            - name: Worker
+              value: API
+          volumeMounts:
+            - name: storehangfireservice-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 51003
+      volumes:
+        - name: storehangfireservice-appsettings
+          configMap:
+            name: storehangfireservice-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+      imagePullSecrets:
+        - name: harbor-secret

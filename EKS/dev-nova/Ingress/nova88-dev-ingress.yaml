@@ -113,4 +113,14 @@ spec:
             name: storeservice-service
             port:
               number: 80
+  - host: storehangfireservice.nova88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: storehangfireservice-service
+            port:
+              number: 80
 

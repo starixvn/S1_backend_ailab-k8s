@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: storehangfireservice-configmap  
+data:
+  environment: Development  
+  appsettings.Development: |
+    {             
+      "ConfigService": [ "http://configservice-service" ] 
+    }
