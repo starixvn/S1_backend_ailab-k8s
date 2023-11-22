@@ -1,8 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    CapacityProvisioned: 0.25vCPU 1GB
   name: membersite-app-deployment
   labels:
     app: membersite-app
@@ -19,6 +17,13 @@ spec:
       containers:
         - name: membersite-app
           image: harbor.ailabpte.co/membersite/membersite:d06ed67
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.25"
+              memory: "0.5G" 
           ports:
             - containerPort: 80
           env:

@@ -1,9 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    CapacityProvisioned: 0.25vCPU 1GB
-  name: adminsite-deployment
   labels:
     app: adminsite
 spec:
@@ -19,6 +16,13 @@ spec:
       containers:
         - name: adminsite
           image: harbor.ailabpte.co/adminsite/backendsite:53bf5c9
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.25"
+              memory: "0.5G" 
           ports:
             - containerPort: 5070
           env:

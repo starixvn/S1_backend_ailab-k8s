@@ -1,8 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    CapacityProvisioned: 0.25vCPU 1GB
   name: configservice-deployment
   labels:
     app: configservice
@@ -19,6 +17,13 @@ spec:
       containers:
         - name: configservice
           image: harbor.ailabpte.co/configservice/configservice:1a4b0d5
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.25"
+              memory: "0.5G" 
           ports:
             - containerPort: 7242
           env:

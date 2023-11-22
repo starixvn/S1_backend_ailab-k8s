@@ -1,8 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    CapacityProvisioned: 0.25vCPU 1GB
   name: bonusworker-deployment  
   labels:
     app: bonusworker
@@ -19,6 +17,13 @@ spec:
       containers:
         - name: bonusworker
           image: harbor.ailabpte.co/bonusservice/bonusservice:fa601cb
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.25"
+              memory: "0.5G" 
           env:
             - name: ASPNETCORE_ENVIRONMENT
               valueFrom:
