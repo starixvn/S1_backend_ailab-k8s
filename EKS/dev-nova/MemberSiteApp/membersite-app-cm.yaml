@@ -16,5 +16,5 @@ data:
         "TransactionSampleRate": 1.0,
         "MaxBatchEventCount": 10
         },	      
-      "ConfigService": [ "http://configservice-service" ] 
+      "ConfigService": [ "http://configservice-service/MemberSite" ] 
     }
