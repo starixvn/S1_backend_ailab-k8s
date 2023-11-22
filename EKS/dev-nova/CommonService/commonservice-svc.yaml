@@ -7,5 +7,6 @@ spec:
   - port: 80
     protocol: TCP
     targetPort: 59359
+  type: ClusterIP
   selector:
     app: commonservice

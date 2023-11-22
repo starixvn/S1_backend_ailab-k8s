@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geoipservice-deployment  
+  labels:
+    app: geoipservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: geoipservice
+  template:
+    metadata:
+      labels:
+        app: geoipservice      
+    spec:
+      containers:
+        - name: geoipservice
+          image: harbor.ailabpte.co/geoip/geoip:3b2db6d
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.25"
+              memory: "0.5G" 
+          ports:
+            - containerPort: 55688
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: geoipservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: API
+          volumeMounts:
+            - name: geoipservice-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 55688
+      volumes:
+        - name: geoipservice-appsettings
+          configMap:
+            name: geoipservice-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+      imagePullSecrets:
+        - name: harbor-secret

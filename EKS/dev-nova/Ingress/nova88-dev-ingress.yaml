@@ -73,5 +73,15 @@ spec:
             name: commonservice-service
             port:
               number: 80
+  - host: geoip.nova88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: geoipservice-service
+            port:
+              number: 80
 
 
