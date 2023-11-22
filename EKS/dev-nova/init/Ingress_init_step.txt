@@ -1,4 +1,7 @@
 
+
+
+
 kubectl create secret docker-registry harbor-secret --docker-server=harbor.ailabpte.co --docker-username=admin --docker-password=1ye7Bu46
 
 

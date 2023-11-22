@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bonusworker-deployment  
+  labels:
+    app: bonusworker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bonusworker  
+  template:
+    metadata:
+      labels:
+        app: bonusworker
+    spec:
+      containers:
+        - name: bonusworker
+          image: harbor.ailabpte.co/bonusservice/bonusservice:fa601cb
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: bonusservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: Worker
+          volumeMounts:
+            - name: bonusservice-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+      volumes:
+        - name: bonusservice-appsettings
+          configMap:
+            name: bonusservice-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+      imagePullSecrets:
+        - name: harbor-secret
