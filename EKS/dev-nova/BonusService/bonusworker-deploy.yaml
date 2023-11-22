@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    CapacityProvisioned: 0.25vCPU 1GB
   name: bonusworker-deployment  
   labels:
     app: bonusworker
