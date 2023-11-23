@@ -133,4 +133,14 @@ spec:
             name: tpservice-service
             port:
               number: 80
+  - host: seamlesswalletservice.nova88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: seamlesswallet-service
+            port:
+              number: 80
 
