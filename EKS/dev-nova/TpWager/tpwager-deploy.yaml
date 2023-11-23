@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tpwager-deployment  
+  labels:
+    app: tpwager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tpwager
+  template:
+    metadata:
+      labels:
+        app: tpwager
+    spec:
+      containers:
+        - name: tpwager
+          image: harbor.ailabpte.co/integratedservice/thirdpartywager:26addc7
+          resources:
+            requests:
+              cpu: "0.5"
+              memory: "1.5G"
+            limits:
+              cpu: "0.5"
+              memory: "1.5G"
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: tpwager-configmap
+                  key: environment
+            - name: ServiceType
+              value: Worker
+          volumeMounts:
+            - name: tpwager-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+      volumes:
+        - name: tpwager-appsettings
+          configMap:
+            name: tpwager-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+      imagePullSecrets:
+        - name: harbor-secret
