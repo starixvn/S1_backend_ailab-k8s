@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: thirdpartybethistory-deployment  
+  labels:
+    app: thirdpartybethistory
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: thirdpartybethistory
+  template:
+    metadata:
+      labels:
+        app: thirdpartybethistory
+    spec:
+      containers:
+        - name: thirdpartybethistory
+          image: harbor.ailabpte.co/integratedservice/thirdpartybethistory:b2d39eb
+          resources:
+            requests:
+              cpu: "0.5"
+              memory: "1.5G"
+            limits:
+              cpu: "0.5"
+              memory: "1.5G"          
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: thirdpartybethistory-configmap
+                  key: environment
+            - name: ServiceType
+              value: Worker
+          volumeMounts:
+            - name: thirdpartybethistory-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+      volumes:
+        - name: thirdpartybethistory-appsettings
+          configMap:
+            name: thirdpartybethistory-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+      imagePullSecrets:
+        - name: harbor-secret

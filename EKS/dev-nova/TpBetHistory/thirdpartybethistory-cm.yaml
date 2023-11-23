@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: thirdpartybethistory-configmap  
+data:
+  environment: Development  
+  appsettings.Development: |
+    {           
+      "ConfigService": [ "http://configservice-service" ] 
+    }
+
+
+
