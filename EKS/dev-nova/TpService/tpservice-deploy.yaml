@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tpservice-deployment  
+  labels:
+    app: tpservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tpservice  
+  template:
+    metadata:
+      labels:
+        app: tpservice
+    spec:
+      containers:
+        - name: tpservice
+          image: harbor.ailabpte.co/integratedservice/thirdpartyservice:30ab391
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.25"
+              memory: "0.5G" 
+          ports:
+            - containerPort: 55996
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: tpservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: API
+          volumeMounts:
+            - name: tpservice-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 55996
+      volumes:
+        - name: tpservice-appsettings
+          configMap:
+            name: tpservice-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+      imagePullSecrets:
+        - name: harbor-secret

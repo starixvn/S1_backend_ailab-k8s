@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tpworker-deployment  
+  labels:
+    app: tpworker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tpworker  
+  template:
+    metadata:
+      labels:
+        app: tpworker
+    spec:
+      containers:
+        - name: tpworker
+          image: harbor.ailabpte.co/integratedservice/thirdpartyservice:30ab391
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.25"
+              memory: "0.5G" 
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: tpservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: Worker
+          volumeMounts:
+            - name: tpworker-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+      volumes:
+        - name: tpworker-appsettings
+          configMap:
+            name: tpservice-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+      imagePullSecrets:
+        - name: harbor-secret

@@ -123,4 +123,14 @@ spec:
             name: storehangfireservice-service
             port:
               number: 80
+  - host: tpservice.nova88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: tpservice-service
+            port:
+              number: 80
 
