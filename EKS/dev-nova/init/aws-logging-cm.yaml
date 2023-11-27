@@ -26,7 +26,7 @@ data:
         Index eks
         Type _doc
         Logstash_Format On
-        Logstash_Prefix dev-payment
+        Logstash_Prefix dev-payment-3
         
   parsers.conf: |
     [PARSER]
@@ -35,6 +35,14 @@ data:
         Regex ^(?<time>[^ ]+) (?<stream>stdout|stderr) (?<logtag>P|F) (?<log>.*)$
         Time_Key    time
         Time_Format %Y-%m-%dT%H:%M:%S.%L%z
+
+    [PARSER]
+        Name json
+        Format json
+        Time_Key time
+        Regex ^(?<time>[^ ]+) (?<stream>stdout|stderr) (?<logtag>P|F) (?<log>.*)$
+        Time_Format %Y-%m-%dT%H:%M:%S.%L%z
+        Time_Keep On   
   
   filters.conf: |
      [FILTER]
@@ -42,3 +50,10 @@ data:
         Match *
         Key_name log
         Parser crio
+
+     [FILTER]
+        Name parser
+        Match *
+        Key_name log
+        Parser json
+        
