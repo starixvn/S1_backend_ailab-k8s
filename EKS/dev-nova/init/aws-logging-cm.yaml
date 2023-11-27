@@ -22,11 +22,34 @@ data:
         Port 9200
         HTTP_User elastic
         HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1
-        Index eks
+        AWS_Region ap-southeast-1        
         Type _doc
         Logstash_Format On
-        Logstash_Prefix dev-payment-3
+        Logstash_Prefix dev-payment
+
+    [OUTPUT]
+        Name es
+        Match kube.var.log.containers.paymentworker-*
+        Host 172.31.48.203
+        Port 9200
+        HTTP_User elastic
+        HTTP_Passwd #WpF&@$h2J8Y6LH5
+        AWS_Region ap-southeast-1        
+        Type _doc
+        Logstash_Format On
+        Logstash_Prefix dev-payment
+
+    [OUTPUT]
+        Name es
+        Match kube.var.log.containers.adminsite-*
+        Host 172.31.48.203
+        Port 9200
+        HTTP_User elastic
+        HTTP_Passwd #WpF&@$h2J8Y6LH5
+        AWS_Region ap-southeast-1        
+        Type _doc
+        Logstash_Format On
+        Logstash_Prefix dev-backend
         
   parsers.conf: |
     [PARSER]
