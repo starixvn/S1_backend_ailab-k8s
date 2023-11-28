@@ -111,6 +111,30 @@ data:
         Logstash_Format On
         Logstash_Prefix dev-hangfire   
 
+    [OUTPUT]
+        Name es
+        Match kube.var.log.containers.membersite-*
+        Host 172.31.48.203
+        Port 9200
+        HTTP_User elastic
+        HTTP_Passwd #WpF&@$h2J8Y6LH5
+        AWS_Region ap-southeast-1
+        Type _doc
+        Logstash_Format On
+        Logstash_Prefix dev-membersite  
+
+    [OUTPUT]
+        Name es
+        Match kube.var.log.containers.membersite-app-*
+        Host 172.31.48.203
+        Port 9200
+        HTTP_User elastic
+        HTTP_Passwd #WpF&@$h2J8Y6LH5
+        AWS_Region ap-southeast-1
+        Type _doc
+        Logstash_Format On
+        Logstash_Prefix dev-membersite  
+
   parsers.conf: |
     [PARSER]
         Name crio
