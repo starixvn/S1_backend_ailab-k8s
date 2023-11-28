@@ -5,9 +5,24 @@ metadata:
 data:
   environment: Development  
   appsettings.Development: |
-    {     	      
+    { 
+       "Serilog": {
+        "Name": "ServiceFile",
+        "MinimumLevel": {
+          "Default": "Information",
+          "Overwrite": {
+            "Name": "Microsoft",
+            "Level": "Error"
+          }
+        },
+        "WriteTo": [
+          {
+            "Name": "Console",
+            "Args": {
+              "formatter": "Serilog.Formatting.Json.JsonFormatter, Serilog"
+            }
+          }
+        ]
+      },    	      
       "ConfigService": [ "http://configservice-service/BonusService" ] 
     }
-
-
-
