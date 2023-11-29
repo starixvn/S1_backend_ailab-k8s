@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: paymentworker-deployment  
+  name: paymentservice-worker-deployment  
   labels:
     app: paymentworker
 spec:

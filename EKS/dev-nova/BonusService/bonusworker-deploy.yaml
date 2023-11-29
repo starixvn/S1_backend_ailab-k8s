@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bonusworker-deployment  
+  name: bonusservice-worker-deployment  
   labels:
     app: bonusworker
 spec:
