@@ -5,16 +5,7 @@ metadata:
   namespace: aws-observability
 data:
   flb_log_cw: "true"
-  output.conf: |
-    [OUTPUT]
-        Name cloudwatch_logs
-        Match kube.var.log.containers.*
-        region ap-southeast-1
-        log_group_name eks/nova88dev
-        log_stream_prefix eks/nova88dev/
-        auto_create_group true
-        log_key log
-
+  output.conf: |    
     # paymentservice、paymentworker
     [OUTPUT]
         Name es
