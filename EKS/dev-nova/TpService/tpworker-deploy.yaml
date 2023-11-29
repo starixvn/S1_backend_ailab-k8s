@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tpworker-deployment  
+  name: tpservice-worker-deployment  
   labels:
     app: tpworker
 spec:

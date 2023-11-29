@@ -14,118 +14,109 @@ data:
         log_stream_prefix eks/nova88dev/
         auto_create_group true
         log_key log
-                
+
     [OUTPUT]
         Name es
-        Match kube.var.log.containers.paymentservice-*
+        Match kube.*.paymentservice-*
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
         HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1        
         Type _doc
         Logstash_Format On
         Logstash_Prefix dev-payment
 
     [OUTPUT]
         Name es
-        Match kube.var.log.containers.paymentworker-*
+        Match kube.*.paymentworker-*
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
         HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1        
         Type _doc
         Logstash_Format On
         Logstash_Prefix dev-payment
 
     [OUTPUT]
         Name es
-        Match kube.var.log.containers.adminsite-*
+        Match kube.*.adminsite-*
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
         HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1        
         Type _doc
         Logstash_Format On
         Logstash_Prefix dev-backend
         
     [OUTPUT]
         Name es
-        Match kube.var.log.containers.bonusservice-*
+        Match kube.*.bonusservice-*
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
         HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1        
         Type _doc
         Logstash_Format On
         Logstash_Prefix dev-bonus
 
     [OUTPUT]
         Name es
-        Match kube.var.log.containers.bonusworker-*
+        Match kube.*.bonusworker-*
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
         HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1        
         Type _doc
         Logstash_Format On
         Logstash_Prefix dev-bonus
 
     [OUTPUT]
         Name es
-        Match kube.var.log.containers.commonservice-*
+        Match kube.*.commonservice-*
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
         HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1
         Type _doc
         Logstash_Format On
-        Logstash_Prefix dev-common   
+        Logstash_Prefix dev-common
 
     [OUTPUT]
         Name es
-        Match kube.var.log.containers.geoipservice-*
+        Match kube.*.geoipservice-*
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
         HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1
         Type _doc
         Logstash_Format On
-        Logstash_Prefix dev-geoip   
+        Logstash_Prefix dev-geoip
 
     [OUTPUT]
         Name es
-        Match kube.var.log.containers.hangfireservice-*
+        Match kube.*.hangfireservice-*
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
         HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1
         Type _doc
         Logstash_Format On
-        Logstash_Prefix dev-hangfire   
+        Logstash_Prefix dev-hangfire
 
     [OUTPUT]
         Name es
-        Match kube.var.log.containers.membersite-*
+        Match kube.*.membersite-*
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
         HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1
         Type _doc
         Logstash_Format On
-        Logstash_Prefix dev-membersite  
+        Logstash_Prefix dev-membersite
 
     [OUTPUT]
         Name es
-        Match kube.var.log.containers.membersite-app-*
+        Match kube.*.seamlesswallet-*
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
@@ -133,11 +124,11 @@ data:
         AWS_Region ap-southeast-1
         Type _doc
         Logstash_Format On
-        Logstash_Prefix dev-membersite  
+        Logstash_Prefix dev-seamless
 
     [OUTPUT]
         Name es
-        Match kube.var.log.containers.seamlesswallet-*
+        Match kube.*.settleworker-*
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
@@ -145,21 +136,54 @@ data:
         AWS_Region ap-southeast-1
         Type _doc
         Logstash_Format On
-        Logstash_Prefix dev-seamless  
+        Logstash_Prefix dev-settleworker
+    
+    [OUTPUT]
+        Name es
+        Match kube.*.storehangfireservice-*
+        Host 172.31.48.203
+        Port 9200
+        HTTP_User elastic
+        HTTP_Passwd #WpF&@$h2J8Y6LH5
+        Type _doc
+        Logstash_Format On
+        Logstash_Prefix dev-storeworker
 
     [OUTPUT]
         Name es
-        Match kube.var.log.containers.settleworker-*
+        Match kube.*.storeservice-*
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
         HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1
         Type _doc
         Logstash_Format On
-        Logstash_Prefix dev-settleworker  
+        Logstash_Prefix dev-storeservice
 
-  parsers.conf: |
+    # tpservice、tpworker
+    [OUTPUT]
+        Name es
+        Match kube.*.tpservice-*
+        Host 172.31.48.203
+        Port 9200
+        HTTP_User elastic
+        HTTP_Passwd #WpF&@$h2J8Y6LH5
+        Type _doc
+        Logstash_Format On
+        Logstash_Prefix dev-tpservice
+   
+    [OUTPUT]
+        Name es
+        Match kube.*.tpwager-*
+        Host 172.31.48.203
+        Port 9200
+        HTTP_User elastic
+        HTTP_Passwd #WpF&@$h2J8Y6LH5
+        Type _doc
+        Logstash_Format On
+        Logstash_Prefix dev-tpwager
+
+  parsers.conf: |    
     [PARSER]
         Name crio
         Format Regex
@@ -175,12 +199,12 @@ data:
         Time_Format %Y-%m-%dT%H:%M:%S.%L%z
         Time_Keep On   
   
-  filters.conf: |
+  filters.conf: |    
      [FILTER]
         Name parser
         Match *
         Key_name log
-        Parser crio
+        Parser crio    
 
      [FILTER]
         Name parser
