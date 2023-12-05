@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: commonservice
-          image: harbor.ailabpte.co/integratedservice/commonservice:df4cbf5
+          image: harbor.ailabpte.co/integratedservice/commonservice:b2d39eb
           resources:
             requests:
               cpu: "0.25"
