@@ -8,17 +8,17 @@ spec:
     kind: Deployment
     name: adminsite-deployment
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 9
   metrics:
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 50
+        averageUtilization: 60
   - type: Resource
     resource:
       name: memory
       target:
-        type: AverageValue
-        averageValue: 250Mi
+        type: Utilization
+        averageUtilization: 60
