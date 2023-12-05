@@ -16,14 +16,14 @@ spec:
     spec:
       containers:
         - name: membersite
-          image: harbor.ailabpte.co/membersite/membersite:d06ed67
+          image: harbor.ailabpte.co/membersite/membersite:f7e7c6a
           resources:
             requests:
               cpu: "0.25"
               memory: "0.5G"
             limits:
               cpu: "0.25"
-              memory: "0.5G" 
+              memory: "0.5G"
           ports:
             - containerPort: 80
           env:
