@@ -8,7 +8,8 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: bonusservice  
+      app: bonusservice
+  revisionHistoryLimit: 5
   template:
     metadata:
       labels:
@@ -16,14 +17,14 @@ spec:
     spec:
       containers:
         - name: bonusservice
-          image: harbor.ailabpte.co/bonusservice/bonusservice:fa601cb
+          image: harbor.ailabpte.co/bonusservice/bonusservice:21f28a7
           resources:
             requests:
               cpu: "0.25"
               memory: "0.5G"
             limits:
-              cpu: "0.25"
-              memory: "0.5G" 
+              cpu: "0.5"
+              memory: "1G" 
           ports:
             - containerPort: 50997
           env:
