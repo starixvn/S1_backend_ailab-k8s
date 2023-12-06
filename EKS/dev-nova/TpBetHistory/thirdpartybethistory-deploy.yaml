@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tpbethistory-deployment  
+  name: thirdpartybethistory-deployment  
   labels:
     app: thirdpartybethistory
 spec:
