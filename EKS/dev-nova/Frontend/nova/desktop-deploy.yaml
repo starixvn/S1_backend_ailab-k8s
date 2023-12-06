@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nova-desktop-deployment  
+  labels:
+    app: nova-desktop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nova-desktop
+  template:
+    metadata:
+      labels:
+        app: nova-desktop
+    spec:
+      containers:
+        - name: nova-desktop
+          image: harbor.ailabpte.co/desktop/next-nova88-dev:271a317
+          resources:
+            requests:
+              cpu: "2"
+              memory: "2G"
+            limits:
+              cpu: "4"
+              memory: "4G"
+          ports:
+            - containerPort: 5073
+      imagePullSecrets:
+        - name: harbor-secret 

@@ -1,0 +1,159 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dev-mobile-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/load-balancer-name: dev-mobile-ingress  
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:ap-southeast-1:761771912479:certificate/b2f710d7-f3e9-4d45-9f9b-c764604e9993'
+    alb.ingress.kubernetes.io/subnets: subnet-01e7e7bda293d8785,subnet-0d918c212f9ba2a81,subnet-0e3a2c7c694c8601b
+    alb.ingress.kubernetes.io/healthcheck-path: /health
+spec:
+  ingressClassName: alb
+  rules:
+    - host: "m.nova88dev.com"
+      http:
+        paths:
+        - path: /en/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /cs/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /my/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /th/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /vn/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /hi/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /id/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /bd/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /kh/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80                      
+        - path: /en/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /cs/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /my/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /th/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /vn/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /hi/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /id/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /bd/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /kh/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80  
+        - path: /api/Site/GetSocialChannel
+          pathType: Exact
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: nova-mobile-service
+              port:
+                number: 80

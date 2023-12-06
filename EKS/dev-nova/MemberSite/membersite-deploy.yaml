@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: membersite
-          image: harbor.ailabpte.co/membersite/membersite:f7e7c6a
+          image: harbor.ailabpte.co/membersite/membersite:1f62855
           resources:
             requests:
               cpu: "0.25"
