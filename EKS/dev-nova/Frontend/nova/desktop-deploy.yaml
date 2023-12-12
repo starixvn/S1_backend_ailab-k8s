@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nova-desktop
-          image: harbor.ailabpte.co/desktop/next-nova88-dev:271a317
+          image: harbor.ailabpte.co/desktop/next-nova88-dev:b45f906
           resources:
             requests:
               cpu: "0.5"
