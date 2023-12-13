@@ -43,6 +43,46 @@ spec:
             name: membersite-service
             port:
               number: 80
+  - host: www.n88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: membersite-service
+            port:
+              number: 80
+  - host: stag.goal123.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: membersite-service
+            port:
+              number: 80
+  - host: stag.bwing.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: membersite-service
+            port:
+              number: 80
+  - host: stag.ivorysport.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: membersite-service
+            port:
+              number: 80
   - host: membersiteappservice.nova88dev.com
     http:
       paths:
