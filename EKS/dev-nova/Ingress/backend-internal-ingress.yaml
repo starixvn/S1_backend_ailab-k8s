@@ -53,6 +53,16 @@ spec:
             name: membersite-service
             port:
               number: 80
+  - host: m.n88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: membersite-service
+            port:
+              number: 80
   - host: stag.goal123.com
     http:
       paths:
