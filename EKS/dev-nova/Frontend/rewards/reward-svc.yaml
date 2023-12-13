@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: reward-service  
+  name: reward-service
 spec:
   type: ClusterIP
   ports:
