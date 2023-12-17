@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configservice-deployment
+  labels:
+    app: configservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: configservice
+  template:
+    metadata:
+      labels:
+        app: configservice
+    spec:
+      containers:
+        - name: configservice
+          image: harbor.ailabpte.co/configservice/configservice:c176f2a
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.25"
+              memory: "0.5G" 
+          ports:
+            - containerPort: 7242
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: ServiceType
+              value: API
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 7242
+      imagePullSecrets:
+        - name: harbor-secret
+
