@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bonusservice-deployment  
+  labels:
+    app: bonusservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bonusservice
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        app: bonusservice      
+    spec:
+      containers:
+        - name: bonusservice
+          image: harbor.ailabpte.co/bonusservice/bonusservice:ed56514
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G"
+          ports:
+            - containerPort: 50997
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: bonusservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: API
+          volumeMounts:
+            - name: bonusservice-appsettings
+              mountPath: /app/appsettings.Production.json
+              subPath: appsettings.Production.json
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 50997
+      volumes:
+        - name: bonusservice-appsettings
+          configMap:
+            name: bonusservice-configmap
+            items:
+              - key: appsettings.Production
+                path: appsettings.Production.json
+      imagePullSecrets:
+        - name: harbor-secret
