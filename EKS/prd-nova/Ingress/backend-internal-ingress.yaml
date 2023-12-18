@@ -13,16 +13,6 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: configservice.ailab88.net
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: configservice-service
-            port:
-              number: 80
   - host: membersiteservice.ailab88.net
     http:
       paths:
