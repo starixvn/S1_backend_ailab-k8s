@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentservice-worker-deployment  
+  labels:
+    app: paymentworker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paymentworker  
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        app: paymentworker
+    spec:
+      containers:
+        - name: paymentworker
+          image: harbor.ailabpte.co/paymentservice/paymentservice:4c95ae5 
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G" 
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: paymentservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: Worker
+          volumeMounts:
+            - name: paymentworker-appsettings
+              mountPath: /app/appsettings.Production.json
+              subPath: appsettings.Production.json
+      volumes:
+        - name: paymentworker-appsettings
+          configMap:
+            name: paymentservice-configmap
+            items:
+              - key: appsettings.Production
+                path: appsettings.Production.json
+      imagePullSecrets:
+        - name: harbor-secret
