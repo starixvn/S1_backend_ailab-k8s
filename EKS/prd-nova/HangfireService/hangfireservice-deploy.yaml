@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hangfireservice-deployment  
+  labels:
+    app: hangfireservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hangfireservice
+  template:
+    metadata:
+      labels:
+        app: hangfireservice
+    spec:
+      containers:
+        - name: hangfireservice
+          image: harbor.ailabpte.co/hangfireservice/hangfireservice:698bf9d 
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G"
+          ports:
+            - containerPort: 45678
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: hangfireservice-configmap
+                  key: environment
+            - name: Worker
+              value: API
+          volumeMounts:
+            - name: hangfireservice-appsettings
+              mountPath: /app/appsettings.Production.json
+              subPath: appsettings.Production.json
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 45678
+      volumes:
+        - name: hangfireservice-appsettings
+          configMap:
+            name: hangfireservice-configmap
+            items:
+              - key: appsettings.Production
+                path: appsettings.Production.json
+      imagePullSecrets:
+        - name: harbor-secret
