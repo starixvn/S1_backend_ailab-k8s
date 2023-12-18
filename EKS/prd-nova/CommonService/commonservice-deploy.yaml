@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:  
+  name: commonservice-deployment  
+  labels:
+    app: commonservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commonservice
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        app: commonservice
+    spec:
+      containers:
+        - name: commonservice
+          image: harbor.ailabpte.co/integratedservice/commonservice:ced59bf
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G"
+          ports:
+            - containerPort: 59359
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: commonservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: API
+          volumeMounts:
+            - name: commonservice-appsettings
+              mountPath: /app/appsettings.Production.json
+              subPath: appsettings.Production.json
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 59359
+      volumes:
+        - name: commonservice-appsettings
+          configMap:
+            name: commonservice-configmap
+            items:
+              - key: appsettings.Production
+                path: appsettings.Production.json
+      imagePullSecrets:
+        - name: harbor-secret
