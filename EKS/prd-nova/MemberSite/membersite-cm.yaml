@@ -23,6 +23,6 @@ data:
             }
           }
         ]
-      },	      
+      },         
       "ConfigService": [ "http://configservice-service/MemberSite" ] 
     }
