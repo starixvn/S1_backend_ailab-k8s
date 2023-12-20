@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: configservice
-          image: harbor.ailabpte.co/configservice/configservice:078430d
+          image: harbor.ailabpte.co/configservice/configservice:6b15f3d
           resources:
             requests:
               cpu: "0.25"

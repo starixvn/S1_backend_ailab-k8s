@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storeservice-deployment  
+  labels:
+    app: storeservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storeservice
+  revisionHistoryLimit: 5 
+  template:
+    metadata:
+      labels:
+        app: storeservice
+    spec:
+      containers:
+        - name: storeservice
+          image: harbor.ailabpte.co/storeservice/storeservice:bde645d
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G" 
+          ports:
+            - containerPort: 51001
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: storeservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: API
+          volumeMounts:
+            - name: storeservice-appsettings
+              mountPath: /app/appsettings.Production.json
+              subPath: appsettings.Production.json
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 51001
+      volumes:
+        - name: storeservice-appsettings
+          configMap:
+            name: storeservice-configmap
+            items:
+              - key: appsettings.Production
+                path: appsettings.Production.json
+      imagePullSecrets:
+        - name: harbor-secret
