@@ -23,3 +23,13 @@ spec:
             name: membersite-service
             port:
               number: 80
+  - host: storehangfireservice.ailab88.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: storehangfireservice-service
+            port:
+              number: 80
