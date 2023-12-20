@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: settleworker-deployment  
+  labels:
+    app: settleworker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: settleworker  
+  template:
+    metadata:
+      labels:
+        app: settleworker
+    spec:
+      containers:
+        - name: settleworker
+          image: harbor.ailabpte.co/integratedservice/thirdpartysettleworker:f54f95f
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G"
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: seamlesswallet-configmap
+                  key: environment
+            - name: ServiceType
+              value: Worker
+          volumeMounts:
+            - name: settleworker-appsettings
+              mountPath: /app/appsettings.Production.json
+              subPath: appsettings.Production.json
+      volumes:
+        - name: settleworker-appsettings
+          configMap:
+            name: seamlesswallet-configmap
+            items:
+              - key: appsettings.Production
+                path: appsettings.Production.json
+      imagePullSecrets:
+        - name: harbor-secret
