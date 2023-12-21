@@ -13,14 +13,14 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: membersiteservice.ailab88.net
+  - host: hangfireservice.ailab88.net
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: membersite-service
+            name: hangfireservice-service
             port:
               number: 80
   - host: storehangfireservice.ailab88.net
