@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: paymentservice
-          image: harbor.ailabpte.co/paymentservice/paymentservice:4c95ae5
+          image: harbor.ailabpte.co/paymentservice/paymentservice:8f6ec4d
           resources:
             requests:
               cpu: "2"
