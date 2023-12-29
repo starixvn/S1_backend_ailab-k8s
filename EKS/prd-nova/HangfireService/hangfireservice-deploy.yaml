@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: hangfireservice
-          image: harbor.ailabpte.co/hangfireservice/hangfireservice:6e46524 
+          image: harbor.ailabpte.co/hangfireservice/hangfireservice:b80793d 
           resources:
             requests:
               cpu: "2"
@@ -38,10 +38,10 @@ spec:
             - name: hangfireservice-appsettings
               mountPath: /app/appsettings.Production.json
               subPath: appsettings.Production.json
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 45678
+          # livenessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: 45678
       volumes:
         - name: hangfireservice-appsettings
           configMap:

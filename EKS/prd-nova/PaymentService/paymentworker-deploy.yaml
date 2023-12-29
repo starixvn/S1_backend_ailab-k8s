@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: paymentworker
-          image: harbor.ailabpte.co/paymentservice/paymentservice:4c95ae5 
+          image: harbor.ailabpte.co/paymentservice/paymentservice:07710b2 
           resources:
             requests:
               cpu: "2"
