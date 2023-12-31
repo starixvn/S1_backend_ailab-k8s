@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adminweb-deployment  
+  labels:
+    app: adminweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adminweb
+  template:
+    metadata:
+      labels:
+        app: adminweb
+    spec:
+      containers:
+        - name: adminweb
+          image: harbor.ailabpte.co/desktop/admin-prd:5eb2f37
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G"
+          ports:
+            - containerPort: 5071
+          volumeMounts:
+            - name: admin-conf-volume
+              mountPath: /etc/nginx/conf.d
+      volumes:
+        - name: admin-conf-volume
+          configMap:
+            name: adminweb-configmap
+            items:
+              - key: key-adminconf
+                path: admin.conf
+      imagePullSecrets:
+        - name: harbor-secret
