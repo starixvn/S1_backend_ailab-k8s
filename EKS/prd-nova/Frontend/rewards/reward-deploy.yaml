@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reward-deployment
+  labels:
+    app: reward
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reward
+  template:
+    metadata:
+      labels:
+        app: reward
+    spec:
+      containers:
+        - name: reward
+          image: harbor.ailabpte.co/desktop/next-nova88-reward-prd:d1ba39f
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G"
+          ports:
+            - containerPort: 5073
+      imagePullSecrets:
+        - name: harbor-secret 

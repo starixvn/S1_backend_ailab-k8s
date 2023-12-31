@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nova-mobile-rls-deployment
+  labels:
+    app: nova-rls-mobile
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nova-rls-mobile
+  template:
+    metadata:
+      labels:
+        app: nova-rls-mobile
+    spec:
+      containers:
+        - name: nova-rls-mobile
+          image: harbor.ailabpte.co/mobile/next-nova88-rls:271a317
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G"
+          ports:
+            - containerPort: 5074
+      imagePullSecrets:
+        - name: harbor-secret
