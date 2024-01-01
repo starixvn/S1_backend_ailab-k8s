@@ -6,16 +6,13 @@ metadata:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/load-balancer-name: dev-mobile-ingress  
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
-    alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:ap-southeast-1:761771912479:certificate/b2f710d7-f3e9-4d45-9f9b-c764604e9993'
+    alb.ingress.kubernetes.io/target-type: ip    
     alb.ingress.kubernetes.io/subnets: subnet-09332247c64aff074,subnet-01756b250ebae0fae,subnet-0ea1391c518fe60dc
     alb.ingress.kubernetes.io/healthcheck-path: /health
 spec:
   ingressClassName: alb
   rules:
-    - host: "m.nova88dev.com"
-      http:
+    - http:
         paths:
         - path: /en/entPage
           pathType: Prefix
