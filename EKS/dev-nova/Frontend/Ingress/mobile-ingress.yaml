@@ -12,7 +12,8 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - http:
+    - host: "m.nova88dev.com" 
+      http:
         paths:
         - path: /en/entPage
           pathType: Prefix
