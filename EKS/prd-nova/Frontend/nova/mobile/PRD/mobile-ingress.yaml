@@ -1,13 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: prd-desktop-ingress
+  name: prd-nova-mobile-ingress
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/load-balancer-name: prd-desktop-ingress  
+    alb.ingress.kubernetes.io/load-balancer-name: prd-nova-mobile-ingress  
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip    
-    alb.ingress.kubernetes.io/subnets: subnet-045d980c50e6dc7b4,subnet-056fe0386b9b46a40,subnet-0bcd9c088afc673e6           
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/subnets: subnet-045d980c50e6dc7b4,subnet-056fe0386b9b46a40,subnet-0bcd9c088afc673e6    
 spec:
   ingressClassName: alb
   rules:
@@ -146,17 +146,10 @@ spec:
               name: membersite-service
               port:
                 number: 80
-        - path: /reward
-          pathType: Prefix
-          backend:
-            service:
-              name: reward-service
-              port:
-                number: 80
         - path: /
           pathType: Prefix
           backend:
             service:
-              name: nova-desktop-service
+              name: nova-mobile-service
               port:
                 number: 80
