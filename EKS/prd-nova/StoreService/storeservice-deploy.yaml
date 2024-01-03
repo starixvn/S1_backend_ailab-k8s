@@ -5,7 +5,7 @@ metadata:
   labels:
     app: storeservice
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: storeservice
@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/storeservice/storeservice:bde645d
           resources:
             requests:
+              cpu: "1"
+              memory: "2G"
+            limits:
               cpu: "2"
               memory: "4G"
-            limits:
-              cpu: "4"
-              memory: "8G" 
           ports:
             - containerPort: 51001
           env:
