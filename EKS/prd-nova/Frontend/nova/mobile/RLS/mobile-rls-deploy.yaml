@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nova-rls-mobile
-          image: harbor.ailabpte.co/mobile/next-nova88-rls:271a317
+          image: harbor.ailabpte.co/mobile/next-nova88-rls:5445420
           resources:
             requests:
               cpu: "2"
