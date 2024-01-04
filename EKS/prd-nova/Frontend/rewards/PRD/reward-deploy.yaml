@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: reward
-          image: harbor.ailabpte.co/desktop/next-nova88-reward-prd:d1ba39f
+          image: harbor.ailabpte.co/desktop/next-nova88-reward-prd:c5265e8
           resources:
             requests:
               cpu: "2"
