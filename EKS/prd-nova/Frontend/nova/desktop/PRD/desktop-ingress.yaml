@@ -13,6 +13,13 @@ spec:
   rules:
     - http:
         paths:
+        - path: /rewards
+          pathType: Prefix
+          backend:
+            service:
+              name: reward-service
+              port:
+                number: 80
         - path: /en/entPage
           pathType: Prefix
           backend:
@@ -144,13 +151,6 @@ spec:
           backend:
             service:
               name: membersite-service
-              port:
-                number: 80
-        - path: /reward
-          pathType: Prefix
-          backend:
-            service:
-              name: reward-service
               port:
                 number: 80
         - path: /
