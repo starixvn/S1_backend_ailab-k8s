@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nova-rls-desktop
-          image: harbor.ailabpte.co/desktop/next-nova88-rls:e04c654
+          image: harbor.ailabpte.co/desktop/next-nova88-rls:a6e8ca9
           resources:
             requests:
               cpu: "2"
