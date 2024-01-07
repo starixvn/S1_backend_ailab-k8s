@@ -15,6 +15,13 @@ spec:
     - host: "m.nova88dev.com" 
       http:
         paths:
+        - path: /rewards
+          pathType: Prefix
+          backend:
+            service:
+              name: reward-service
+              port:
+                number: 80
         - path: /en/entPage
           pathType: Prefix
           backend:
