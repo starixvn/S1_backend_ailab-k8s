@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: adminweb
-          image: harbor.ailabpte.co/desktop/admin-prd:5eb2f37
+          image: harbor.ailabpte.co/desktop/admin-prd:cba5a05
           resources:
             requests:
               cpu: "2"
