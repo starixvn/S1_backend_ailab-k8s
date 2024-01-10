@@ -8,6 +8,10 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip   
     alb.ingress.kubernetes.io/subnets: subnet-045d980c50e6dc7b4,subnet-056fe0386b9b46a40,subnet-0bcd9c088afc673e6
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]' 
+    alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:ap-southeast-1:761771912479:certificate/bcf1a51a-ff64-495a-84f0-e2b5ab93a01f'
+    alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:ap-southeast-1:761771912479:regional/webacl/Backoffice_NOVA_AccessRule_ALB/d2a9e9c9-187f-454f-9fa8-ef36dde5c93b
+
 spec:
   ingressClassName: alb
   rules:
