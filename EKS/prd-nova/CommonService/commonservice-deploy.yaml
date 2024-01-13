@@ -5,7 +5,7 @@ metadata:
   labels:
     app: commonservice
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: commonservice
@@ -17,14 +17,14 @@ spec:
     spec:
       containers:
         - name: commonservice
-          image: harbor.ailabpte.co/integratedservice/commonservice:ced59bf
+          image: harbor.ailabpte.co/integratedservice/commonservice:a5447b2
           resources:
             requests:
-              cpu: "0.5"
-              memory: "1"
-            limits:
               cpu: "1"
               memory: "2G"
+            limits:
+              cpu: "2"
+              memory: "4G"
           ports:
             - containerPort: 59359
           env:
