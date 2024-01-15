@@ -19,11 +19,11 @@ spec:
           image: harbor.ailabpte.co/hangfireservice/hangfireservice:9067850
           resources:
             requests:
-              cpu: "1"
-              memory: "1.5G"
+              cpu: "2"
+              memory: "4G"
             limits:
-              cpu: "1"
-              memory: "1.5G" 
+              cpu: "4"
+              memory: "8G"
           ports:
             - containerPort: 45678
           env:
