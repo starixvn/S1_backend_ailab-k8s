@@ -25,3 +25,13 @@ spec:
               name: seamlesswallet-service
               port:
                 number: 443
+    - host: "tp.ailab168.net"
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: seamlesswallet-service
+              port:
+                number: 443
