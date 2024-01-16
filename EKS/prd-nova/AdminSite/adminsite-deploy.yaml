@@ -5,7 +5,7 @@ metadata:
   labels:
     app: adminsite
 spec:
-  replicas: 3
+  replicas: 4
   selector:
     matchLabels:
       app: adminsite
@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/adminsite/backendsite:5488090
           resources:
             requests:
-              cpu: "8"
-              memory: "24G"
+              cpu: "4"
+              memory: "12G"
             limits:
-              cpu: "8"
-              memory: "48G"
+              cpu: "4"
+              memory: "24G"
           ports:
             - containerPort: 5070
           env:

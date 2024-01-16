@@ -7,8 +7,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: adminsite-deployment
-  minReplicas: 3
-  maxReplicas: 12
+  minReplicas: 4
+  maxReplicas: 16
   metrics:
   - type: Resource
     resource:
