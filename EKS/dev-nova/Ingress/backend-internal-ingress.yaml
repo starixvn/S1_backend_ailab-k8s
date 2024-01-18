@@ -183,6 +183,16 @@ spec:
             name: membersite-service
             port:
               number: 80
+  - host: www.bwingdev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: membersite-service
+            port:
+              number: 80
   - host: stag.ivorysport.com
     http:
       paths:
