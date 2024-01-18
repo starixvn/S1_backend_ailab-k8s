@@ -85,7 +85,7 @@ data:
         Logstash_Format On
         Logstash_Prefix eks-prd-hangfire
      
-    # membersite、membersiteApp
+    # membersite
     [OUTPUT]
         Name es
         Match kube.*.membersite-deployment-*
@@ -96,10 +96,23 @@ data:
         Type _doc
         Logstash_Format On
         Logstash_Prefix eks-prd-membersite
-
+        
+    # membersiteApp
     [OUTPUT]
         Name es
-        Match kube.*.membersite-rls-deployment-*
+        Match kube.*.membersite-app-*
+        Host 172.31.48.203
+        Port 9200
+        HTTP_User elastic
+        HTTP_Passwd #WpF&@$h2J8Y6LH5
+        Type _doc
+        Logstash_Format On
+        Logstash_Prefix eks-prd-membersite
+
+    # membersite rls
+    [OUTPUT]
+        Name es
+        Match kube.*.membersite-rls-*
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
