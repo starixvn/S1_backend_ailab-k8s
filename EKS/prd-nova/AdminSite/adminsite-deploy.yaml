@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: adminsite
-          image: harbor.ailabpte.co/adminsite/backendsite:5488090
+          image: harbor.ailabpte.co/adminsite/backendsite:e6efdc3
           resources:
             requests:
               cpu: "4"
@@ -39,6 +39,9 @@ spec:
             - name: adminsite-appsettings
               mountPath: /app/appsettings.Production.json
               subPath: appsettings.Production.json
+            - name: adminsite-pvc
+              mountPath: /backendsite
+              subPath: logs/backendsite  
       volumes:
         - name: adminsite-appsettings
           configMap:
@@ -46,5 +49,8 @@ spec:
             items:
               - key: appsettings.Production
                 path: appsettings.Production.json
+        - name: adminsite-pvc
+          persistentVolumeClaim:
+            claimName: adminsite-pvc
       imagePullSecrets:
         - name: harbor-secret
