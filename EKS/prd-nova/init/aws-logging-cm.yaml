@@ -20,17 +20,6 @@ data:
     
     [OUTPUT]
         Name es
-        Match kube.*.adminsite-deployment-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-backend
-
-    [OUTPUT]
-        Name es
         Match kube.*.adminsite-rls-deployment-*
         Host 172.31.48.203
         Port 9200

@@ -15,18 +15,7 @@ data:
             "Level": "Error"
           }
         },
-        "WriteTo": [
-          {
-            "Name": "File",
-            "Args": {
-              "path": "/backendsite/backendsite-.log",
-              "formatter": "Serilog.Formatting.Json.JsonFormatter, Serilog",
-              "rollingInterval": "Day",
-              "retainedFileCountLimit": 10,
-              "fileSizeLimitBytes": 10485760,
-              "rollOnFileSizeLimit": true
-            }
-          },
+        "WriteTo": [                
           {
             "Name": "Console"
           }

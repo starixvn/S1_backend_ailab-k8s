@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: adminsite
-          image: harbor.ailabpte.co/adminsite/backendsite:e6efdc3
+          image: harbor.ailabpte.co/adminsite/backendsite:dee499c
           resources:
             requests:
               cpu: "4"
