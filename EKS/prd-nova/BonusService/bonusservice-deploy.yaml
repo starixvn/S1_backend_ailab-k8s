@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: bonusservice
-          image: harbor.ailabpte.co/bonusservice/bonusservice:ed56514
+          image: harbor.ailabpte.co/bonusservice/bonusservice:f8eb6aa
           resources:
             requests:
               cpu: "2"
@@ -35,10 +35,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: API
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: bonusservice-appsettings
               mountPath: /app/appsettings.Production.json
               subPath: appsettings.Production.json
+            - name: bonusservice-pvc
+              mountPath: /bonus
+              subPath: logs/bonus 
           livenessProbe:
             httpGet:
               path: /health
@@ -50,5 +55,8 @@ spec:
             items:
               - key: appsettings.Production
                 path: appsettings.Production.json
+        - name: bonusservice-pvc
+          persistentVolumeClaim:
+            claimName: bonusservice-pvc
       imagePullSecrets:
         - name: harbor-secret
