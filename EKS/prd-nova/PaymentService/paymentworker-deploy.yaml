@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: paymentworker
-          image: harbor.ailabpte.co/paymentservice/paymentservice:07710b2 
+          image: harbor.ailabpte.co/paymentservice/paymentservice:564d54d 
           resources:
             requests:
               cpu: "2"
@@ -33,10 +33,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: Worker
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: paymentworker-appsettings
               mountPath: /app/appsettings.Production.json
               subPath: appsettings.Production.json
+            - name: paymentservice-pvc
+              mountPath: /payment
+              subPath: logs/paymentWorker
       volumes:
         - name: paymentworker-appsettings
           configMap:
@@ -44,5 +49,8 @@ spec:
             items:
               - key: appsettings.Production
                 path: appsettings.Production.json
+        - name: paymentservice-pvc
+          persistentVolumeClaim:
+            claimName: paymentservice-pvc
       imagePullSecrets:
         - name: harbor-secret
