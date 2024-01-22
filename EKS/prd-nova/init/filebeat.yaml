@@ -34,6 +34,16 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
+    - /logs/membersite-rls/*.log
+  fields:
+    es_index: eks-rls-membersite
+    logtype: membersite
+  json.keys_under_root: true
+  json.add_error_key: true
+
+- type: log
+  enabled: true
+  paths:
    - /logs/backendsite/*.log
   fields:
     es_index: eks-prd-backend
