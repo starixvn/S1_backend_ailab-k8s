@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: adminsite
-          image: harbor.ailabpte.co/adminsite/backendsite:dee499c
+          image: harbor.ailabpte.co/adminsite/backendsite:c55d831
           resources:
             requests:
               cpu: "4"
@@ -35,6 +35,8 @@ spec:
                   key: environment
             - name: ServiceType
               value: API
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: adminsite-appsettings
               mountPath: /app/appsettings.Production.json

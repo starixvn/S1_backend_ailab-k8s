@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: adminsite-rls
-          image: harbor.ailabpte.co/adminsite/backendsite:5488090
+          image: harbor.ailabpte.co/adminsite/backendsite:c55d831
           resources:
             requests:
               cpu: "4"
@@ -32,10 +32,15 @@ spec:
               value: Release
             - name: ServiceType
               value: API
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: adminsite-appsettings
               mountPath: /app/appsettings.Release.json
               subPath: appsettings.Production.json
+            - name: adminsite-rls-pvc
+              mountPath: /backendsite
+              subPath: logs/backendsite-rls  
       volumes:
         - name: adminsite-appsettings
           configMap:
@@ -43,5 +48,8 @@ spec:
             items:
               - key: appsettings.Production
                 path: appsettings.Production.json
+        - name: adminsite-rls-pvc
+          persistentVolumeClaim:
+            claimName: adminsite-rls-pvc
       imagePullSecrets:
         - name: harbor-secret
