@@ -16,14 +16,14 @@ spec:
     spec:
       containers:
         - name: hangfireservice
-          image: harbor.ailabpte.co/hangfireservice/hangfireservice:b80793d 
+          image: harbor.ailabpte.co/hangfireservice/hangfireservice:474e031 
           resources:
             requests:
-              cpu: "2"
-              memory: "4G"
+              cpu: "4"
+              memory: "12G"
             limits:
               cpu: "4"
-              memory: "8G"
+              memory: "24G"
           ports:
             - containerPort: 45678
           env:
@@ -34,14 +34,19 @@ spec:
                   key: environment
             - name: Worker
               value: API
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: hangfireservice-appsettings
               mountPath: /app/appsettings.Production.json
               subPath: appsettings.Production.json
-          # livenessProbe:
-          #   httpGet:
-          #     path: /health
-          #     port: 45678
+            - name: hangfireservice-pvc
+              mountPath: /hangfire
+              subPath: logs/hangfire
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 45678
       volumes:
         - name: hangfireservice-appsettings
           configMap:
@@ -49,5 +54,8 @@ spec:
             items:
               - key: appsettings.Production
                 path: appsettings.Production.json
+        - name: hangfireservice-pvc
+          persistentVolumeClaim:
+            claimName: hangfireservice-pvc
       imagePullSecrets:
         - name: harbor-secret
