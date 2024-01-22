@@ -4,43 +4,8 @@ metadata:
   name: aws-logging
   namespace: aws-observability
 data:
-  flb_log_cw: "true"
-  output.conf: |    
-    # paymentservice、paymentworker
-    [OUTPUT]
-        Name es
-        Match kube.*.paymentservice-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-payment
-    
-    [OUTPUT]
-        Name es
-        Match kube.*.adminsite-rls-deployment-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-rls-backend    
-        
-    # bonusservice、bonusworker    
-    [OUTPUT]
-        Name es
-        Match kube.*.bonusservice-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-bonus
-
+  flb_log_cw: "false"
+  output.conf: |       
     [OUTPUT]
         Name es
         Match kube.*.commonservice-*
@@ -51,144 +16,6 @@ data:
         Type _doc
         Logstash_Format On
         Logstash_Prefix eks-prd-common
-
-    [OUTPUT]
-        Name es
-        Match kube.*.geoipservice-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-geoip
-
-    [OUTPUT]
-        Name es
-        Match kube.*.hangfireservice-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-hangfire
-     
-    # membersite
-    [OUTPUT]
-        Name es
-        Match kube.*.membersite-deployment-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-membersite
-        
-    # membersiteApp
-    [OUTPUT]
-        Name es
-        Match kube.*.membersite-app-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-membersite
-
-    # membersite rls
-    [OUTPUT]
-        Name es
-        Match kube.*.membersite-rls-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-rls-membersite
-
-    [OUTPUT]
-        Name es
-        Match kube.*.seamlesswallet-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-seamless
-
-    [OUTPUT]
-        Name es
-        Match kube.*.settleworker-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-settleworker
-    
-    [OUTPUT]
-        Name es
-        Match kube.*.storehangfireservice-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-storeworker
-
-    [OUTPUT]
-        Name es
-        Match kube.*.storeservice-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-storeservice
-
-    # tpservice、tpworker
-    [OUTPUT]
-        Name es
-        Match kube.*.tpservice-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-tpservice
-   
-    [OUTPUT]
-        Name es
-        Match kube.*.tpwager-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-tpwager
-
-    [OUTPUT]
-        Name es
-        Match kube.*.thirdpartybethistory-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix eks-prd-bethistory
 
   parsers.conf: |    
     [PARSER]
@@ -217,5 +44,4 @@ data:
         Name parser
         Match *
         Key_name log
-        Parser json
-        
+        Parser json        
