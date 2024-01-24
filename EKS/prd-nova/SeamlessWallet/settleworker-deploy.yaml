@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: settleworker
-          image: harbor.ailabpte.co/integratedservice/thirdpartysettleworker:f54f95f
+          image: harbor.ailabpte.co/integratedservice/thirdpartysettleworker:e872bcc
           resources:
             requests:
               cpu: "2"
@@ -32,10 +32,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: Worker
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: settleworker-appsettings
               mountPath: /app/appsettings.Production.json
               subPath: appsettings.Production.json
+            - name: settleworker-pvc
+              mountPath: /settleworker
+              subPath: logs/settleworker
       volumes:
         - name: settleworker-appsettings
           configMap:
@@ -43,5 +48,8 @@ spec:
             items:
               - key: appsettings.Production
                 path: appsettings.Production.json
+        - name: settleworker-pvc
+          persistentVolumeClaim:
+            claimName: settleworker-pvc
       imagePullSecrets:
         - name: harbor-secret
