@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: storeservice
-          image: harbor.ailabpte.co/storeservice/storeservice:bde645d
+          image: harbor.ailabpte.co/storeservice/storeservice:c305ec7
           resources:
             requests:
               cpu: "1"
@@ -35,10 +35,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: API
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: storeservice-appsettings
               mountPath: /app/appsettings.Production.json
               subPath: appsettings.Production.json
+            - name: storeservice-pvc
+              mountPath: /storeservice
+              subPath: logs/storeservice
           livenessProbe:
             httpGet:
               path: /health
@@ -50,5 +55,8 @@ spec:
             items:
               - key: appsettings.Production
                 path: appsettings.Production.json
+        - name: storeservice-pvc
+          persistentVolumeClaim:
+            claimName: storeservice-pvc
       imagePullSecrets:
         - name: harbor-secret

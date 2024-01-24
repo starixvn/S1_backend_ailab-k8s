@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: storehangfireservice
-          image: harbor.ailabpte.co/storeservice/storehangfireservice:bde645d
+          image: harbor.ailabpte.co/storeservice/storehangfireservice:c305ec7
           resources:
             requests:
               cpu: "2"
@@ -34,10 +34,15 @@ spec:
                   key: environment
             - name: Worker
               value: API
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: storehangfireservice-appsettings
               mountPath: /app/appsettings.Production.json
               subPath: appsettings.Production.json
+            - name: storehangfireservice-pvc
+              mountPath: /storeworker
+              subPath: logs/storeworker
           livenessProbe:
             httpGet:
               path: /health
@@ -49,5 +54,8 @@ spec:
             items:
               - key: appsettings.Production
                 path: appsettings.Production.json
+        - name: storehangfireservice-pvc
+          persistentVolumeClaim:
+            claimName: storehangfireservice-pvc
       imagePullSecrets:
         - name: harbor-secret
