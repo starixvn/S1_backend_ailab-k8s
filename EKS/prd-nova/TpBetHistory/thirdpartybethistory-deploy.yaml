@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: thirdpartybethistory
-          image: harbor.ailabpte.co/integratedservice/thirdpartybethistory:f54f95f
+          image: harbor.ailabpte.co/integratedservice/thirdpartybethistory:e872bcc
           resources:
             requests:
               cpu: "2"
@@ -32,10 +32,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: Worker
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: thirdpartybethistory-appsettings
               mountPath: /app/appsettings.Production.json
               subPath: appsettings.Production.json
+            - name: thirdpartybethistory-pvc
+              mountPath: /bethistory
+              subPath: logs/bethistory
       volumes:
         - name: thirdpartybethistory-appsettings
           configMap:
@@ -43,5 +48,8 @@ spec:
             items:
               - key: appsettings.Production
                 path: appsettings.Production.json
+        - name: thirdpartybethistory-pvc
+          persistentVolumeClaim:
+            claimName: thirdpartybethistory-pvc
       imagePullSecrets:
         - name: harbor-secret

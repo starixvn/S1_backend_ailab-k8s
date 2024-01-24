@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: tpservice
-          image: harbor.ailabpte.co/integratedservice/thirdpartyservice:f54f95f
+          image: harbor.ailabpte.co/integratedservice/thirdpartyservice:e872bcc
           resources:
             requests:
               cpu: "2"
@@ -34,10 +34,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: API
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: tpservice-appsettings
               mountPath: /app/appsettings.Production.json
               subPath: appsettings.Production.json
+            - name: tpservice-pvc
+              mountPath: /tpservice
+              subPath: logs/tpservice
           livenessProbe:
             httpGet:
               path: /health
@@ -49,5 +54,8 @@ spec:
             items:
               - key: appsettings.Production
                 path: appsettings.Production.json
+        - name: tpservice-pvc
+          persistentVolumeClaim:
+            claimName: tpservice-pvc
       imagePullSecrets:
         - name: harbor-secret

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: tpwager
-          image: harbor.ailabpte.co/integratedservice/thirdpartywager:e7e16b4
+          image: harbor.ailabpte.co/integratedservice/thirdpartywager:e872bcc
           resources:
             requests:
               cpu: "2"
@@ -32,10 +32,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: Worker
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: tpwager-appsettings
               mountPath: /app/appsettings.Production.json
               subPath: appsettings.Production.json
+            - name: tpwager-pvc
+              mountPath: /tpwager
+              subPath: logs/tpwager
       volumes:
         - name: tpwager-appsettings
           configMap:
@@ -43,5 +48,8 @@ spec:
             items:
               - key: appsettings.Production
                 path: appsettings.Production.json
+        - name: tpwager-pvc
+          persistentVolumeClaim:
+            claimName: tpwager-pvc
       imagePullSecrets:
         - name: harbor-secret
