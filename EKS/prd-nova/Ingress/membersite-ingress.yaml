@@ -7,7 +7,8 @@ metadata:
     alb.ingress.kubernetes.io/load-balancer-name: prd-membersite-api-ingress
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip        
-    alb.ingress.kubernetes.io/subnets: subnet-045d980c50e6dc7b4,subnet-056fe0386b9b46a40,subnet-0bcd9c088afc673e6
+    #alb.ingress.kubernetes.io/subnets: subnet-045d980c50e6dc7b4,subnet-056fe0386b9b46a40,subnet-0bcd9c088afc673e6
+    alb.ingress.kubernetes.io/subnets: subnet-0304543452f554e20,subnet-0304b609c266c4b60,subnet-0e3eaf19af3b27b05
     alb.ingress.kubernetes.io/healthcheck-path: /health
 spec:
   ingressClassName: alb
