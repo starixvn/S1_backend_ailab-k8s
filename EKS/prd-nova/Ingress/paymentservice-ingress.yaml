@@ -8,13 +8,25 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
-    alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:ap-southeast-1:761771912479:certificate/410ff1c9-da34-4255-b971-5f465668663d'
+    alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:ap-southeast-1:761771912479:certificate/e6ec6644-716a-472a-b8c6-a2388d6d3b5c'
     alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:ap-southeast-1:761771912479:regional/webacl/Payment_Nova_AccessRule_PRD/47bffadf-e190-4bd5-80f9-db70579e134d
     alb.ingress.kubernetes.io/subnets: subnet-045d980c50e6dc7b4,subnet-056fe0386b9b46a40,subnet-0bcd9c088afc673e6
     alb.ingress.kubernetes.io/healthcheck-path: /health
 spec:
   ingressClassName: alb
   rules:
+  # Noc
+    - host: "payment.nova88asia.com"
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: payservice-service
+              port:
+                number: 443
+  # Route53
     - host: "payment.ailab88.net"
       http:
         paths:
