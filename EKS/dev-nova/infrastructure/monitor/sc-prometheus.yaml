@@ -1,0 +1,14 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: prometheus
+  namespace: prometheus
+provisioner: ebs.csi.aws.com
+parameters:
+  type: gp2
+reclaimPolicy: Retain
+allowedTopologies:
+- matchLabelExpressions:
+  - key: topology.ebs.csi.aws.com/zone
+    values: 
+    - ap-southeast-1a
