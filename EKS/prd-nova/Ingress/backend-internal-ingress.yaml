@@ -10,6 +10,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]' 
     alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:ap-southeast-1:761771912479:certificate/e6ec6644-716a-472a-b8c6-a2388d6d3b5c'
     alb.ingress.kubernetes.io/subnets: subnet-0304543452f554e20,subnet-0304b609c266c4b60,subnet-0e3eaf19af3b27b05    
+    alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=1200
 spec:
   ingressClassName: alb
   rules:
@@ -101,5 +102,15 @@ spec:
         backend:
           service:
             name: adminsite-service
+            port:
+              number: 80
+  - host: reportservice.ailab88.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: reportservice-service
             port:
               number: 80
