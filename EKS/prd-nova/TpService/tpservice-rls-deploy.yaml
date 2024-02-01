@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tpservice-rls-deployment  
+  labels:
+    app: tpservice-rls
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tpservice-rls
+  template:
+    metadata:
+      labels:
+        app: tpservice-rls
+    spec:
+      containers:
+        - name: tpservice-rls
+          image: harbor.ailabpte.co/integratedservice/thirdpartyservice:e3e6b1d
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G"  
+          ports:
+            - containerPort: 55996
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Release
+            - name: ServiceType
+              value: API
+            - name: Brand
+              value: Nova
+          volumeMounts:
+            - name: tpservice-appsettings
+              mountPath: /app/appsettings.Release.json
+              subPath: appsettings.Production.json
+            - name: tpservice-rls-pvc
+              mountPath: /tpservice
+              subPath: logs/tpservice-rls
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 55996
+      volumes:
+        - name: tpservice-appsettings
+          configMap:
+            name: tpservice-configmap
+            items:
+              - key: appsettings.Production
+                path: appsettings.Production.json
+        - name: tpservice-rls-pvc
+          persistentVolumeClaim:
+            claimName: tpservice-rls-pvc
+      imagePullSecrets:
+        - name: harbor-secret
