@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nova-mobile
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: nova-mobile
@@ -19,11 +19,11 @@ spec:
           image: harbor.ailabpte.co/mobile/next-nova88-dev:271a317
           resources:
             requests:
-              cpu: "0.5"
-              memory: "1G"
+              cpu: "4"
+              memory: "12G"
             limits:
-              cpu: "1"
-              memory: "2G"
+              cpu: "4"
+              memory: "24G"
           ports:
             - containerPort: 5074
       imagePullSecrets:

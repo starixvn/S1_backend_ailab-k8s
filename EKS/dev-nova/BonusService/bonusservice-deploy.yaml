@@ -5,7 +5,7 @@ metadata:
   labels:
     app: bonusservice
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: bonusservice
@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/bonusservice/bonusservice:21f28a7
           resources:
             requests:
-              cpu: "0.25"
-              memory: "0.5G"
+              cpu: "4"
+              memory: "12G"
             limits:
-              cpu: "0.5"
-              memory: "1G" 
+              cpu: "4"
+              memory: "24G"
           ports:
             - containerPort: 50997
           env:
