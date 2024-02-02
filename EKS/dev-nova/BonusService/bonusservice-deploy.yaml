@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/bonusservice/bonusservice:21f28a7
           resources:
             requests:
-              cpu: "4"
-              memory: "12G"
+              cpu: "1"
+              memory: "2G"
             limits:
-              cpu: "4"
-              memory: "24G"
+              cpu: "1"
+              memory: "3G"
           ports:
             - containerPort: 50997
           env:
