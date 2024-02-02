@@ -19,11 +19,11 @@ spec:
           image: harbor.ailabpte.co/mobile/next-nova88-dev:271a317
           resources:
             requests:
-              cpu: "4"
-              memory: "12G"
+              cpu: "1"
+              memory: "2G"
             limits:
-              cpu: "4"
-              memory: "24G"
+              cpu: "1"
+              memory: "3G"
           ports:
             - containerPort: 5074
       imagePullSecrets:

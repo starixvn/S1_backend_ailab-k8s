@@ -19,11 +19,11 @@ spec:
           image: harbor.ailabpte.co/desktop/next-nova88-dev:b45f906
           resources:
             requests:
-              cpu: "4"
-              memory: "12G"
+              cpu: "1"
+              memory: "2G"
             limits:
-              cpu: "4"
-              memory: "24G"
+              cpu: "1"
+              memory: "3G"
           ports:
             - containerPort: 5073
       imagePullSecrets:
