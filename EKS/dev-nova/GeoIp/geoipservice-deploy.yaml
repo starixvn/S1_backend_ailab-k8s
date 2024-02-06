@@ -35,10 +35,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: API
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: geoipservice-appsettings
               mountPath: /app/appsettings.Development.json
               subPath: appsettings.Development.json
+            - name: geoipservice-pvc
+              mountPath: /geoip
+              subPath: logs/geoip
           livenessProbe:
             httpGet:
               path: /health
@@ -50,5 +55,8 @@ spec:
             items:
               - key: appsettings.Development
                 path: appsettings.Development.json
+        - name: geoipservice-pvc
+          persistentVolumeClaim:
+            claimName: geoipservice-pvc
       imagePullSecrets:
         - name: harbor-secret
