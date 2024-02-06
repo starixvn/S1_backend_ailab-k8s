@@ -6,28 +6,6 @@ metadata:
 data:
   flb_log_cw: "true"
   output.conf: |                    
-    [OUTPUT]
-        Name es
-        Match kube.*.storehangfireservice-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix dev-storeworker
-
-    [OUTPUT]
-        Name es
-        Match kube.*.storeservice-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix dev-storeservice
-
     # tpservice、tpworker
     [OUTPUT]
         Name es
