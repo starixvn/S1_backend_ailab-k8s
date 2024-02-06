@@ -35,10 +35,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: API
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: membersiteapp-appsettings
               mountPath: /app/appsettings.Development.APP.json
               subPath: appsettings.Development.APP.json
+            - name: membersite-pvc
+              mountPath: /membersite
+              subPath: logs/membersiteApp
       volumes:
         - name: membersiteapp-appsettings
           configMap:
@@ -46,5 +51,8 @@ spec:
             items:
               - key: appsettings.Development.APP
                 path: appsettings.Development.APP.json
+        - name: membersite-pvc
+          persistentVolumeClaim:
+            claimName: membersite-pvc
       imagePullSecrets:
         - name: harbor-secret
