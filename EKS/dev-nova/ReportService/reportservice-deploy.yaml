@@ -41,6 +41,9 @@ spec:
             - name: reportservice-appsettings
               mountPath: /app/appsettings.Development.json
               subPath: appsettings.Development.json
+            - name: reportservice-pvc
+              mountPath: /report
+              subPath: logs/reportservice
       volumes:
         - name: reportservice-appsettings
           configMap:
@@ -48,5 +51,8 @@ spec:
             items:
               - key: appsettings.Development
                 path: appsettings.Development.json
+        - name: reportservice-pvc
+          persistentVolumeClaim:
+            claimName: reportservice-pvc
       imagePullSecrets:
         - name: harbor-secret
