@@ -32,10 +32,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: Worker
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: bonusservice-appsettings
               mountPath: /app/appsettings.Development.json
               subPath: appsettings.Development.json
+            - name: bonusservice-pvc
+              mountPath: /bonus
+              subPath: logs/bonusWorker
       volumes:
         - name: bonusservice-appsettings
           configMap:
@@ -43,5 +48,8 @@ spec:
             items:
               - key: appsettings.Development
                 path: appsettings.Development.json
+        - name: bonusservice-pvc
+          persistentVolumeClaim:
+            claimName: bonusservice-pvc
       imagePullSecrets:
         - name: harbor-secret
