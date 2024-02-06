@@ -20,17 +20,6 @@ data:
     
     [OUTPUT]
         Name es
-        Match kube.*.commonservice-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix dev-common
-
-    [OUTPUT]
-        Name es
         Match kube.*.geoipservice-*
         Host 172.31.48.203
         Port 9200

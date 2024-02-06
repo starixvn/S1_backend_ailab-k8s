@@ -35,10 +35,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: API
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: commonservice-appsettings
               mountPath: /app/appsettings.Development.json
               subPath: appsettings.Development.json
+            - name: commonservice-pvc
+              mountPath: /common
+              subPath: logs/common
           livenessProbe:
             httpGet:
               path: /health
@@ -50,5 +55,8 @@ spec:
             items:
               - key: appsettings.Development
                 path: appsettings.Development.json
+        - name: commonservice-pvc
+          persistentVolumeClaim:
+            claimName: commonservice-pvc
       imagePullSecrets:
         - name: harbor-secret
