@@ -4,18 +4,18 @@ metadata:
   name: aws-logging
   namespace: aws-observability
 data:
-  flb_log_cw: "true"
+  flb_log_cw: "false"
   output.conf: |                       
     [OUTPUT]
         Name es
-        Match kube.*.tpwager-*
+        Match *.nova-desktop-deployment-*.log
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
         HTTP_Passwd #WpF&@$h2J8Y6LH5
         Type _doc
         Logstash_Format On
-        Logstash_Prefix dev-tpwager
+        Logstash_Prefix dev-nova-desktop
 
   parsers.conf: |    
     [PARSER]
