@@ -5,31 +5,7 @@ metadata:
   namespace: aws-observability
 data:
   flb_log_cw: "true"
-  output.conf: |                
-    [OUTPUT]
-        Name es
-        Match kube.*.seamlesswallet-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix dev-seamless
-
-    [OUTPUT]
-        Name es
-        Match kube.*.settleworker-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        AWS_Region ap-southeast-1
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix dev-settleworker
-    
+  output.conf: |                    
     [OUTPUT]
         Name es
         Match kube.*.storehangfireservice-*

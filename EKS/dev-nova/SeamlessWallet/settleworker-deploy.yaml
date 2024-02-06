@@ -32,10 +32,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: Worker
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: settleworker-appsettings
               mountPath: /app/appsettings.Development.json
               subPath: appsettings.Development.json
+            - name: settleworker-pvc
+              mountPath: /settleworker
+              subPath: logs/settleworker
       volumes:
         - name: settleworker-appsettings
           configMap:
@@ -43,5 +48,8 @@ spec:
             items:
               - key: appsettings.Development
                 path: appsettings.Development.json
+        - name: settleworker-pvc
+          persistentVolumeClaim:
+            claimName: settleworker-pvc
       imagePullSecrets:
         - name: harbor-secret
