@@ -17,18 +17,7 @@ data:
         Type _doc
         Logstash_Format On
         Logstash_Prefix dev-payment
-    
-    [OUTPUT]
-        Name es
-        Match kube.*.adminsite-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix dev-backend
-        
+            
     # bonusservice、bonusworker    
     [OUTPUT]
         Name es
