@@ -34,10 +34,15 @@ spec:
                   key: environment
             - name: Worker
               value: API
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: hangfireservice-appsettings
               mountPath: /app/appsettings.Development.json
               subPath: appsettings.Development.json
+            - name: hangfireservice-pvc
+              mountPath: /hangfire
+              subPath: logs/hangfire
           livenessProbe:
             httpGet:
               path: /health
@@ -49,5 +54,8 @@ spec:
             items:
               - key: appsettings.Development
                 path: appsettings.Development.json
+        - name: hangfireservice-pvc
+          persistentVolumeClaim:
+            claimName: hangfireservice-pvc
       imagePullSecrets:
         - name: harbor-secret

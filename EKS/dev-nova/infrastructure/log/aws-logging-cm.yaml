@@ -17,29 +17,7 @@ data:
         Type _doc
         Logstash_Format On
         Logstash_Prefix dev-payment
-    
-    [OUTPUT]
-        Name es
-        Match kube.*.geoipservice-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix dev-geoip
-
-    [OUTPUT]
-        Name es
-        Match kube.*.hangfireservice-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix dev-hangfire
-     
+            
     # membersite、membersiteApp
     [OUTPUT]
         Name es
