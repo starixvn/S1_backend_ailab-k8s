@@ -40,7 +40,7 @@ spec:
               subPath: appsettings.Production.json
             - name: tpservice-pvc
               mountPath: /tpservice
-              subPath: logs/tpservice
+              subPath: logs/tpserviceWorker
       volumes:
         - name: tpworker-appsettings
           configMap:
