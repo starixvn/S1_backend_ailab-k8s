@@ -5,31 +5,7 @@ metadata:
   namespace: aws-observability
 data:
   flb_log_cw: "true"
-  output.conf: |    
-    # paymentservice、paymentworker
-    [OUTPUT]
-        Name es
-        Match kube.*.paymentservice-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix dev-payment
-            
-    # membersite、membersiteApp
-    [OUTPUT]
-        Name es
-        Match kube.*.membersite-*
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix dev-membersite
-
+  output.conf: |                
     [OUTPUT]
         Name es
         Match kube.*.seamlesswallet-*

@@ -33,10 +33,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: Worker
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: paymentworker-appsettings
               mountPath: /app/appsettings.Development.json
               subPath: appsettings.Development.json
+            - name: paymentservice-pvc
+              mountPath: /payment
+              subPath: logs/paymentWorker
       volumes:
         - name: paymentworker-appsettings
           configMap:
@@ -44,5 +49,8 @@ spec:
             items:
               - key: appsettings.Development
                 path: appsettings.Development.json
+        - name: paymentservice-pvc
+          persistentVolumeClaim:
+            claimName: paymentservice-pvc
       imagePullSecrets:
         - name: harbor-secret

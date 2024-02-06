@@ -35,10 +35,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: API
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: paymentservice-appsettings
               mountPath: /app/appsettings.Development.json
               subPath: appsettings.Development.json
+            - name: paymentservice-pvc
+              mountPath: /payment
+              subPath: logs/payment
           livenessProbe:
             httpGet:
               path: /health
@@ -50,5 +55,8 @@ spec:
             items:
               - key: appsettings.Development
                 path: appsettings.Development.json
+        - name: paymentservice-pvc
+          persistentVolumeClaim:
+            claimName: paymentservice-pvc
       imagePullSecrets:
         - name: harbor-secret
