@@ -34,10 +34,15 @@ spec:
                   key: environment
             - name: ServiceType
               value: API
+            - name: Brand
+              value: Nova
           volumeMounts:
             - name: tpservice-appsettings
               mountPath: /app/appsettings.Development.json
               subPath: appsettings.Development.json
+            - name: tpservice-pvc
+              mountPath: /tpservice
+              subPath: logs/tpservice
           livenessProbe:
             httpGet:
               path: /health
@@ -49,5 +54,8 @@ spec:
             items:
               - key: appsettings.Development
                 path: appsettings.Development.json
+        - name: tpservice-pvc
+          persistentVolumeClaim:
+            claimName: tpservice-pvc
       imagePullSecrets:
         - name: harbor-secret
