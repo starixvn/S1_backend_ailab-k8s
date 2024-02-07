@@ -144,6 +144,16 @@ spec:
             name: seamlesswallet-service
             port:
               number: 80
+  - host: reportservice.nova88dev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: reportservice-service 
+            port:
+              number: 80
   - host: www.n88dev.com
     http:
       paths:
