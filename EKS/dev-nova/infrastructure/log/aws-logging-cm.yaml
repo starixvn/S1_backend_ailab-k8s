@@ -5,7 +5,7 @@ metadata:
   namespace: aws-observability
 data:
   flb_log_cw: "false"
-  output.conf: |                       
+  output.conf: | 
     [OUTPUT]
         Name es
         Match *.nova-desktop-deployment-*.log
@@ -16,7 +16,29 @@ data:
         Type _doc
         Logstash_Format On
         Logstash_Prefix dev-nova-desktop
-
+  
+    [OUTPUT]
+        Name es
+        Match *.nova-mobile-deployment-*.log
+        Host 172.31.48.203
+        Port 9200
+        HTTP_User elastic
+        HTTP_Passwd #WpF&@$h2J8Y6LH5
+        Type _doc
+        Logstash_Format On
+        Logstash_Prefix dev-nova-mobile
+ 
+    [OUTPUT]
+        Name es
+        Match *.reward-deployment-*
+        Host 172.31.48.203
+        Port 9200
+        HTTP_User elastic
+        HTTP_Passwd #WpF&@$h2J8Y6LH5
+        Type _doc
+        Logstash_Format On
+        Logstash_Prefix dev-reward
+  
   parsers.conf: |    
     [PARSER]
         Name crio
