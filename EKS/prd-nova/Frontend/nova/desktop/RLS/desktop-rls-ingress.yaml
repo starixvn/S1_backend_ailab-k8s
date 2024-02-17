@@ -4,9 +4,10 @@ metadata:
   name: rls-nova-desktop-ingress
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/load-balancer-name: rls-nova-desktop-ingress  
+    alb.ingress.kubernetes.io/load-balancer-name: rls-nova-desktop-ingress
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip    
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/security-groups: sg-06f8560d4b5865184,sg-0735eed72bfa965eb,sg-08cbe5aee36025802
     alb.ingress.kubernetes.io/subnets: subnet-045d980c50e6dc7b4,subnet-056fe0386b9b46a40,subnet-0bcd9c088afc673e6
     alb.ingress.kubernetes.io/healthcheck-path: /health
 spec:
