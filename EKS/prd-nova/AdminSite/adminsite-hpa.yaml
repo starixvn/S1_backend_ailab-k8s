@@ -8,7 +8,7 @@ spec:
     kind: Deployment
     name: adminsite-deployment
   minReplicas: 4
-  maxReplicas: 16
+  maxReplicas: 12
   metrics:
   - type: Resource
     resource:
