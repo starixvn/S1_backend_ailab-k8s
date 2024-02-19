@@ -19,11 +19,11 @@ spec:
           image: harbor.ailabpte.co/integratedservice/thirdpartyservice:e3e6b1d
           resources:
             requests:
-              cpu: "2"
-              memory: "4G"
+              cpu: "0.5"
+              memory: "1G"
             limits:
-              cpu: "4"
-              memory: "8G"  
+              cpu: "1"
+              memory: "2G" 
           ports:
             - containerPort: 55996
           env:
