@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/reportservice/reportservice:b5605b1
           resources:
             requests:
-              cpu: "4"
-              memory: "12G"
+              cpu: "2"
+              memory: "4G"
             limits:
               cpu: "4"
-              memory: "24G"
+              memory: "8G" 
           ports:
             - containerPort: 8418
           env:

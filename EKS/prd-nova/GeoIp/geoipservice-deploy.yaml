@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/geoip/geoip:c9aadf8  
           resources:
             requests:
-              cpu: "1"
-              memory: "2G"
-            limits:
               cpu: "2"
               memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G" 
           ports:
             - containerPort: 55688
           env:
