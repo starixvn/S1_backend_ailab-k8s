@@ -5,7 +5,7 @@ metadata:
   labels:
     app: adminweb-rls
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: adminweb-rls
