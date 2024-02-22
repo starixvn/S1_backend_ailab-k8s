@@ -224,6 +224,16 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
+    - /logs/reportservice-rls/*.log
+  fields:
+    es_index: eks-rls-report
+    logtype: report
+  json.keys_under_root: true
+  json.add_error_key: true
+
+- type: log
+  enabled: true
+  paths:
     - /logs/nginx/*.log
   fields:
     es_index: eks-prd-nginx

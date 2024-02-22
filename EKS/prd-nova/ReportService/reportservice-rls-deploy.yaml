@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reportservice-rls-deployment
+  labels:
+    app: reportservice-rls
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: reportservice-rls
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        app: reportservice-rls
+    spec:
+      containers:
+        - name: reportservice-rls
+          image: harbor.ailabpte.co/reportservice/reportservice:b5605b1
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G" 
+          ports:
+            - containerPort: 8418
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Release
+            - name: ServiceType
+              value: API
+            - name: Brand
+              value: Nova
+          volumeMounts:
+            - name: reportservice-appsettings
+              mountPath: /app/appsettings.Release.json
+              subPath: appsettings.Production.json
+            - name: reportservice-pvc
+              mountPath: /report
+              subPath: logs/reportservice-rls
+      volumes:
+        - name: reportservice-appsettings
+          configMap:
+            name: reportservice-configmap
+            items:
+              - key: appsettings.Production
+                path: appsettings.Production.json
+        - name: reportservice-pvc
+          persistentVolumeClaim:
+            claimName: reportservice-rls-pvc
+      imagePullSecrets:
+        - name: harbor-secret
