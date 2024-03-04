@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/adminsite/backendsite:c55d831
           resources:
             requests:
-              cpu: "2"
+              cpu: "1"
               memory: "4G"
             limits:
-              cpu: "4"
-              memory: "8G" 
+              cpu: "1"
+              memory: "4G" 
           ports:
             - containerPort: 5070
           env:
