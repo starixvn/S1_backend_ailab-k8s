@@ -7,7 +7,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: paymentservice-deployment
-  minReplicas: 3
+  minReplicas: 5
   maxReplicas: 9
   metrics:
   - type: Resource
