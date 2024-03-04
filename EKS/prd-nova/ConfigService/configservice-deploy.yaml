@@ -5,7 +5,7 @@ metadata:
   labels:
     app: configservice
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: configservice
@@ -19,11 +19,11 @@ spec:
           image: harbor.ailabpte.co/configservice/configservice:4d8f864
           resources:
             requests:
-              cpu: "1"
-              memory: "2G"
+              cpu: "0.25"
+              memory: "0.5G"
             limits:
-              cpu: "2"
-              memory: "4G" 
+              cpu: "0.25"
+              memory: "0.5G"  
           ports:
             - containerPort: 7242
           env:
