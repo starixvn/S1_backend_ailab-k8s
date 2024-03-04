@@ -48,6 +48,11 @@ spec:
             httpGet:
               path: /health
               port: 59159
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 59159
+            initialDelaySeconds: 10  
       volumes:
         - name: paymentservice-appsettings
           configMap:
