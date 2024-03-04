@@ -5,7 +5,7 @@ metadata:
   labels:
     app: tpservice
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: tpservice  
@@ -19,11 +19,11 @@ spec:
           image: harbor.ailabpte.co/integratedservice/thirdpartyservice:e872bcc
           resources:
             requests:
-              cpu: "2"
-              memory: "4G"
+              cpu: "1"
+              memory: "2G"
             limits:
-              cpu: "4"
-              memory: "8G"  
+              cpu: "2"
+              memory: "4G"  
           ports:
             - containerPort: 55996
           env:
