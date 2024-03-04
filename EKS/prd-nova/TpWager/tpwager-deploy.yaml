@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: tpwager
-          image: harbor.ailabpte.co/integratedservice/thirdpartywager:e872bcc
+          image: harbor.ailabpte.co/integratedservice/thirdpartywager:0793efa
           resources:
             requests:
               cpu: "2"
