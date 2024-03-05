@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/adminsite/backendsite:c55d831
           resources:
             requests:
-              cpu: "1"
-              memory: "4G"
+              cpu: "0.5"
+              memory: "2G"
             limits:
-              cpu: "1"
-              memory: "4G" 
+              cpu: "0.5"
+              memory: "3G" 
           ports:
             - containerPort: 5070
           env:
@@ -43,7 +43,12 @@ spec:
               subPath: appsettings.Production.json
             - name: adminsite-pvc
               mountPath: /backendsite
-              subPath: logs/backendsite  
+              subPath: logs/backendsite
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5070
+            initialDelaySeconds: 10  
       volumes:
         - name: adminsite-appsettings
           configMap:
