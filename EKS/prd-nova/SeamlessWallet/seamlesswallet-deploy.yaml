@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/integratedservice/thirdpartyseamlesswallet:e872bcc
           resources:
             requests:
-              cpu: "2"
-              memory: "4G"
+              cpu: "1"
+              memory: "2G"
             limits:
-              cpu: "4"
-              memory: "8G" 
+              cpu: "1"
+              memory: "4G" 
           ports:
             - containerPort: 59259
           env:
@@ -48,6 +48,11 @@ spec:
             httpGet:
               path: /health
               port: 59259
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 59259
+            initialDelaySeconds: 10    
       terminationGracePeriodSeconds: 30
       volumes:
         - name: seamlesswallet-appsettings
