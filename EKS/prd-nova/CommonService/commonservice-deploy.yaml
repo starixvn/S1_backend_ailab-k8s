@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/integratedservice/commonservice:9ae03a8
           resources:
             requests:
-              cpu: "1"
-              memory: "2G"
+              cpu: "0.25"
+              memory: "0.5G"
             limits:
-              cpu: "2"
-              memory: "4G" 
+              cpu: "0.25"
+              memory: "1G" 
           ports:
             - containerPort: 59359
           env:
@@ -48,6 +48,11 @@ spec:
             httpGet:
               path: /health
               port: 59359
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 59359
+            initialDelaySeconds: 10 
       volumes:
         - name: commonservice-appsettings
           configMap:
