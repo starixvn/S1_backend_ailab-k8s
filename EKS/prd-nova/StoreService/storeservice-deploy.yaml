@@ -5,7 +5,7 @@ metadata:
   labels:
     app: storeservice
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: storeservice
@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/storeservice/storeservice:c305ec7
           resources:
             requests:
-              cpu: "1"
-              memory: "2G"
+              cpu: "0.25"
+              memory: "1G"
             limits:
-              cpu: "2"
-              memory: "4G" 
+              cpu: "0.25"
+              memory: "2G" 
           ports:
             - containerPort: 51001
           env:
@@ -48,6 +48,11 @@ spec:
             httpGet:
               path: /health
               port: 51001
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 51001
+            initialDelaySeconds: 10  
       volumes:
         - name: storeservice-appsettings
           configMap:
