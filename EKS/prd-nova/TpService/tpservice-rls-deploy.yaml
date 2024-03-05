@@ -19,11 +19,11 @@ spec:
           image: harbor.ailabpte.co/integratedservice/thirdpartyservice:e3e6b1d
           resources:
             requests:
-              cpu: "0.5"
-              memory: "1G"
+              cpu: "0.25"
+              memory: "0.5G"
             limits:
-              cpu: "1"
-              memory: "2G" 
+              cpu: "0.25"
+              memory: "1G"  
           ports:
             - containerPort: 55996
           env:
@@ -44,6 +44,11 @@ spec:
             httpGet:
               path: /health
               port: 55996
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 55996
+            initialDelaySeconds: 10 
       volumes:
         - name: tpservice-appsettings
           configMap:
