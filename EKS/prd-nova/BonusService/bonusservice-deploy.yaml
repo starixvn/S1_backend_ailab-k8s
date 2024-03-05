@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/bonusservice/bonusservice:f8eb6aa
           resources:
             requests:
-              cpu: "2"
-              memory: "4G"
+              cpu: "0.5"
+              memory: "2G"
             limits:
-              cpu: "4"
-              memory: "8G"
+              cpu: "0.5"
+              memory: "4G"
           ports:
             - containerPort: 50997
           env:
@@ -48,6 +48,11 @@ spec:
             httpGet:
               path: /health
               port: 50997
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 50997
+            initialDelaySeconds: 10 
       volumes:
         - name: bonusservice-appsettings
           configMap:

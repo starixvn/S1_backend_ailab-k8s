@@ -19,11 +19,11 @@ spec:
           image: harbor.ailabpte.co/bonusservice/bonusservice:f8eb6aa
           resources:
             requests:
-              cpu: "2"
-              memory: "4G"
+              cpu: "0.5"
+              memory: "1G"
             limits:
-              cpu: "4"
-              memory: "8G"
+              cpu: "0.5"
+              memory: "2G"
           env:
             - name: ASPNETCORE_ENVIRONMENT
               valueFrom:
