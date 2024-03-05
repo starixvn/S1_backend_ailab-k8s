@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/geoip/geoip:c9aadf8  
           resources:
             requests:
-              cpu: "2"
-              memory: "4G"
+              cpu: "0.25"
+              memory: "0.5G"
             limits:
-              cpu: "4"
-              memory: "8G" 
+              cpu: "0.25"
+              memory: "1G" 
           ports:
             - containerPort: 55688
           env:
@@ -48,6 +48,11 @@ spec:
             httpGet:
               path: /health
               port: 55688
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 55688
+            initialDelaySeconds: 10 
       volumes:
         - name: geoipservice-appsettings
           configMap:
