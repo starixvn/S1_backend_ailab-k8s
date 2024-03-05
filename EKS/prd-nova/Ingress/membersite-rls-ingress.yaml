@@ -10,6 +10,7 @@ metadata:
     alb.ingress.kubernetes.io/subnets: subnet-0304543452f554e20,subnet-0304b609c266c4b60,subnet-0e3eaf19af3b27b05
     alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:ap-southeast-1:761771912479:regional/webacl/MemberSite_API_AccessRule_PRD/57979917-f789-4216-8d41-fbff7495eddd
     alb.ingress.kubernetes.io/healthcheck-path: /health
+    alb.ingress.kubernetes.io/load-balancer-attributes: deletion_protection.enabled=true
 spec:
   ingressClassName: alb
   rules:
