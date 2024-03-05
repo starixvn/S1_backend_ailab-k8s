@@ -19,11 +19,11 @@ spec:
           image: harbor.ailabpte.co/desktop/admin-prd:cba5a05
           resources:
             requests:
-              cpu: "1"
-              memory: "2G"
+              cpu: "0.25"
+              memory: "0.5G"
             limits:
-              cpu: "1"
-              memory: "4G"
+              cpu: "0.25"
+              memory: "1G"
           ports:
             - containerPort: 5071
           volumeMounts:
