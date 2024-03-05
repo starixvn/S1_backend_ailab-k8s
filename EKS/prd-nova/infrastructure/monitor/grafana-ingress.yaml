@@ -13,6 +13,7 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-port: "3000"
     alb.ingress.kubernetes.io/healthcheck-path: /api/health    
     alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:ap-southeast-1:761771912479:certificate/e6ec6644-716a-472a-b8c6-a2388d6d3b5c'
+    alb.ingress.kubernetes.io/load-balancer-attributes: deletion_protection.enabled=true
 spec:
   rules:
     - host: grafana.ailab88.net
