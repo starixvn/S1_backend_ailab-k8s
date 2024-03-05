@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/paymentservice/paymentservice:564d54d 
           resources:
             requests:
-              cpu: "2"
-              memory: "4G"
+              cpu: "0.5"
+              memory: "1G"
             limits:
-              cpu: "4"
-              memory: "8G" 
+              cpu: "0.5"
+              memory: "2G" 
           env:
             - name: ASPNETCORE_ENVIRONMENT
               valueFrom:
