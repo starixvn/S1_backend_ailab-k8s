@@ -20,8 +20,8 @@ spec:
           image: harbor.ailabpte.co/membersite/membersite:065c17e
           resources:
             requests:
-              cpu: "0.5"
-              memory: "2G"
+              cpu: "1"
+              memory: "3G"
             limits:
               cpu: "1"
               memory: "4G"
