@@ -162,7 +162,7 @@ spec:
               name: nova-mobile-service
               port:
                 number: 80
-    - host: "m.nova88dev.com" 
+    - host: "m.tuk555dev.com" 
       http:
         paths:
         - path: /en/entPage
