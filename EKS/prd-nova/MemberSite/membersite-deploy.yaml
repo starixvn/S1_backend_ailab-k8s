@@ -20,10 +20,10 @@ spec:
           image: harbor.ailabpte.co/membersite/membersite:065c17e
           resources:
             requests:
-              cpu: "0.5"
+              cpu: "1"
               memory: "3G"
             limits:
-              cpu: "0.5"
+              cpu: "1"
               memory: "4G"
           ports:
             - containerPort: 80
@@ -48,7 +48,7 @@ spec:
             httpGet:
               path: /health
               port: 80
-            initialDelaySeconds: 10   
+            initialDelaySeconds: 15   
       volumes:
         - name: membersite-appsettings
           configMap:
