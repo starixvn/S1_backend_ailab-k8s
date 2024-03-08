@@ -10,7 +10,8 @@ metadata:
     alb.ingress.kubernetes.io/subnets: subnet-045d980c50e6dc7b4,subnet-056fe0386b9b46a40,subnet-0bcd9c088afc673e6
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
     alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:ap-southeast-1:761771912479:certificate/e6ec6644-716a-472a-b8c6-a2388d6d3b5c'
-    alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:ap-southeast-1:761771912479:regional/webacl/Backoffice_NOVA_AccessRule_ALB/d2a9e9c9-187f-454f-9fa8-ef36dde5c93b
+    #alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:ap-southeast-1:761771912479:regional/webacl/Backoffice_NOVA_AccessRule_ALB/d2a9e9c9-187f-454f-9fa8-ef36dde5c93b
+    alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:ap-southeast-1:761771912479:regional/webacl/Backoffice_NOVA_AccessRule_PRD/332bf777-c1dd-42ed-8e75-68d3a9dc377f                                                 
     alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=1200
     alb.ingress.kubernetes.io/load-balancer-attributes: deletion_protection.enabled=true
 spec:
