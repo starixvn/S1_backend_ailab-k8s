@@ -3,26 +3,6 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /logs/common/*.log
-  fields:
-    es_index: eks-prd-common
-    logtype: common
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/bethistory/*.log
-  fields:
-    es_index: eks-prd-bethistory
-    logtype: bethistory
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
     - /logs/storeservice/*.log
   fields:
     es_index: eks-prd-storeservice
