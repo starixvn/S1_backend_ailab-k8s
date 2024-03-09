@@ -5,7 +5,7 @@ filebeat.inputs:
   paths:
     - /logs/reportservice/*.log
   fields:
-    es_index: eks-prd-report
+    es_index: prod-report
     logtype: report
   json.keys_under_root: true
   json.add_error_key: true
@@ -15,7 +15,7 @@ filebeat.inputs:
   paths:
     - /logs/reportservice-rls/*.log
   fields:
-    es_index: eks-rls-report
+    es_index: release-report
     logtype: report
   json.keys_under_root: true
   json.add_error_key: true
@@ -52,7 +52,7 @@ processors:
 logging.level: info
 logging.to_files: true
 logging.files:
-  path: /logs/filebeat
+  path: /logs/filebeat/report
   name: filebeat.log
   keepfiles: 7
   rotateeverybytes: 10485760
