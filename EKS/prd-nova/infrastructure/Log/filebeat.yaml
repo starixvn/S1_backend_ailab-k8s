@@ -3,50 +3,10 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /logs/hangfire/*.log
-  fields:
-    es_index: eks-prd-hangfire
-    logtype: hangfire
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
     - /logs/common/*.log
   fields:
     es_index: eks-prd-common
     logtype: common
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/tpwager/*.log
-  fields:
-    es_index: eks-prd-tpwager
-    logtype: tpwager
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/bonus/*.log
-  fields:
-    es_index: eks-prd-bonus
-    logtype: bonus
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/bonusWorker/*.log
-  fields:
-    es_index: eks-prd-bonus
-    logtype: bonusWorker
   json.keys_under_root: true
   json.add_error_key: true
 
