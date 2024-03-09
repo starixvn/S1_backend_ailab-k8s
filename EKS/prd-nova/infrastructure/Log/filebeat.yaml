@@ -3,36 +3,6 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /logs/storeservice/*.log
-  fields:
-    es_index: eks-prd-storeservice
-    logtype: storeservice
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/storeworker/*.log
-  fields:
-    es_index: eks-prd-storeworker
-    logtype: storeworker
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/geoip/*.log
-  fields:
-    es_index: eks-prd-geoip
-    logtype: geoip
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
     - /logs/reportservice/*.log
   fields:
     es_index: eks-prd-report
