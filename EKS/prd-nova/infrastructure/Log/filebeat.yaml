@@ -1,4 +1,3 @@
-
 filebeat.inputs:
 
 - type: log
@@ -8,126 +7,6 @@ filebeat.inputs:
   fields:
     es_index: eks-prd-hangfire
     logtype: hangfire
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/membersite/*.log
-  fields:
-    es_index: eks-prd-membersite
-    logtype: membersite
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-   - /logs/membersiteApp/*.log
-  fields:
-    es_index: eks-prd-membersite
-    logtype: membersiteApp
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/membersite-rls/*.log
-  fields:
-    es_index: eks-rls-membersite
-    logtype: membersite
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-   - /logs/backendsite/*.log
-  fields:
-    es_index: eks-prd-backend
-    logtype: backend
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-   - /logs/backendsite-rls/*.log
-  fields:
-    es_index: eks-rls-backend
-    logtype: backend
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/payment/*.log
-  fields:
-    es_index: eks-prd-payment
-    logtype: payment
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/paymentWorker/*.log
-  fields:
-    es_index: eks-prd-payment
-    logtype: paymentWorker
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-   - /logs/settleworker/*.log
-  fields:
-    es_index: eks-prd-settleworker
-    logtype: settleworker
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/seamlesswallet/*.log
-  fields:
-    es_index: eks-prd-seamless
-    logtype: seamless
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/tpservice/*.log
-  fields:
-    es_index: eks-prd-tpservice
-    logtype: tpservice
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/tpservice-rls/*.log
-  fields:
-    es_index: eks-rls-tpservice
-    logtype: tpservice
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/tpserviceWorker/*.log
-  fields:
-    es_index: eks-prd-tpservice
-    logtype: tpserviceWorker
   json.keys_under_root: true
   json.add_error_key: true
 
@@ -228,16 +107,6 @@ filebeat.inputs:
   fields:
     es_index: eks-rls-report
     logtype: report
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
-    - /logs/nginx/*.log
-  fields:
-    es_index: eks-prd-nginx
-    logtype: nginx
   json.keys_under_root: true
   json.add_error_key: true
 
