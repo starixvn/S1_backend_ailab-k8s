@@ -4,6 +4,7 @@ metadata:
   name: tpwager-deployment  
   labels:
     app: tpwager
+    ENV: DEV
 spec:
   replicas: 1
   selector:

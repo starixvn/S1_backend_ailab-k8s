@@ -4,6 +4,7 @@ metadata:
   name: nova-desktop-deployment  
   labels:
     app: nova-desktop
+    ENV: DEV
 spec:
   replicas: 3
   selector:

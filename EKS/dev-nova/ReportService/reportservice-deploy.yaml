@@ -4,6 +4,7 @@ metadata:
   name: reportservice-deployment
   labels:
     app: reportservice
+    ENV: DEV
 spec:
   replicas: 1
   selector:

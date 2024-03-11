@@ -4,6 +4,7 @@ metadata:
   name: bonusservice-worker-deployment  
   labels:
     app: bonusworker
+    ENV: DEV
 spec:
   replicas: 1
   selector:

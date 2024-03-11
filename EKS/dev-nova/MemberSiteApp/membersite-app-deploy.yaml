@@ -4,6 +4,7 @@ metadata:
   name: membersite-app-deployment
   labels:
     app: membersite-app
+    ENV: DEV
 spec:
   replicas: 1
   selector:

@@ -4,6 +4,7 @@ metadata:
   name: commonservice-deployment  
   labels:
     app: commonservice
+    ENV: DEV
 spec:
   replicas: 1
   selector:

@@ -4,6 +4,7 @@ metadata:
   name: bonusservice-deployment  
   labels:
     app: bonusservice
+    ENV: DEV
 spec:
   replicas: 3
   selector:

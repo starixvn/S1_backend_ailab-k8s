@@ -4,6 +4,7 @@ metadata:
   name: configservice-deployment
   labels:
     app: configservice
+    ENV: DEV
 spec:
   replicas: 1
   selector:

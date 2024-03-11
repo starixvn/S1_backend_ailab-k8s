@@ -4,6 +4,7 @@ metadata:
   name: tpservice-deployment  
   labels:
     app: tpservice
+    ENV: DEV
 spec:
   replicas: 1
   selector:

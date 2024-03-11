@@ -4,6 +4,7 @@ metadata:
   name: hangfireservice-deployment  
   labels:
     app: hangfireservice
+    ENV: DEV
 spec:
   replicas: 1
   selector:

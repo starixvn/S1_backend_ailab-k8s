@@ -4,6 +4,7 @@ metadata:
   name: storehangfireservice-deployment
   labels:
     app: storehangfireservice
+    ENV: DEV
 spec:
   replicas: 1
   selector:
