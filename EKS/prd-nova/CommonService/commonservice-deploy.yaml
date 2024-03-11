@@ -4,6 +4,7 @@ metadata:
   name: commonservice-deployment  
   labels:
     app: commonservice
+    ENV: PRD
 spec:
   replicas: 2
   selector:

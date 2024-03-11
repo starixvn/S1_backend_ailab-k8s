@@ -4,6 +4,7 @@ metadata:
   name: nova-mobile-rls-deployment
   labels:
     app: nova-rls-mobile
+    ENV: PRD
 spec:
   replicas: 1
   selector:

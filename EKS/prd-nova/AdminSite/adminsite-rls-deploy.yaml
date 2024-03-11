@@ -4,6 +4,7 @@ metadata:
   name: adminsite-rls-deployment  
   labels:
     app: adminsite-rls
+    ENV: PRD
 spec:
   replicas: 1
   selector:

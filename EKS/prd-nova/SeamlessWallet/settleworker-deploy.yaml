@@ -4,6 +4,7 @@ metadata:
   name: settleworker-deployment  
   labels:
     app: settleworker
+    ENV: PRD
 spec:
   replicas: 1
   selector:

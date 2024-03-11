@@ -4,6 +4,7 @@ metadata:
   name: tpservice-worker-deployment  
   labels:
     app: tpworker
+    ENV: PRD
 spec:
   replicas: 1
   selector:

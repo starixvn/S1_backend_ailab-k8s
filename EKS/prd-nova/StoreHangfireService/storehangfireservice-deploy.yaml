@@ -4,6 +4,7 @@ metadata:
   name: storehangfireservice-deployment
   labels:
     app: storehangfireservice
+    ENV: PRD
 spec:
   replicas: 1
   selector:

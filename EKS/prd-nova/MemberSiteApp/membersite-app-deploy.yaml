@@ -4,6 +4,7 @@ metadata:
   name: membersite-app-deployment
   labels:
     app: membersite-app
+    ENV: PRD
 spec:
   replicas: 2
   selector:
