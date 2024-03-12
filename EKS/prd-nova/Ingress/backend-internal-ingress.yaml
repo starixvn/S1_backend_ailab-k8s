@@ -96,6 +96,16 @@ spec:
             name: tpservice-service
             port:
               number: 80
+  - host: tpservice-rls.ailab88.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: tpservice-rls-service
+            port:
+              number: 80
   - host: adminsiteservice.ailab88.net
     http:
       paths:
