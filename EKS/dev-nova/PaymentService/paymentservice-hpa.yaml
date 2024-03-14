@@ -8,7 +8,7 @@ spec:
     kind: Deployment
     name: paymentservice-deployment
   minReplicas: 1
-  maxReplicas: 9
+  maxReplicas: 3
   metrics:
   - type: Resource
     resource:

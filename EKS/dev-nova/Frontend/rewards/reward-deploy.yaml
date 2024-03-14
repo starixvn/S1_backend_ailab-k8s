@@ -6,7 +6,7 @@ metadata:
     app: reward
     ENV: DEV
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: reward
@@ -20,11 +20,11 @@ spec:
           image: harbor.ailabpte.co/desktop/next-nova88-reward-dev:d1ba39f
           resources:
             requests:
-              cpu: "1"
-              memory: "2G"
+              cpu: "0.5"
+              memory: "1G"
             limits:
               cpu: "1"
-              memory: "3G"
+              memory: "2G"
           ports:
             - containerPort: 5073
       imagePullSecrets:

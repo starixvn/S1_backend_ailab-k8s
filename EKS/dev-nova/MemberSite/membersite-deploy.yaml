@@ -21,11 +21,11 @@ spec:
           image: harbor.ailabpte.co/membersite/membersite:1f62855
           resources:
             requests:
-              cpu: "1"
-              memory: "2G"
+              cpu: "0.5"
+              memory: "1G"
             limits:
               cpu: "1"
-              memory: "3G"
+              memory: "2G"
           ports:
             - containerPort: 80
           env:
