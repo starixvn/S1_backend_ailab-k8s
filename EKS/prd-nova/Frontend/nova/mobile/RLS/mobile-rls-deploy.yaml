@@ -6,7 +6,7 @@ metadata:
     app: nova-rls-mobile
     ENV: PRD
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: nova-rls-mobile
