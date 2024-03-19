@@ -9,7 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/target-type: ip    
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]' 
     alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:ap-southeast-1:761771912479:certificate/e6ec6644-716a-472a-b8c6-a2388d6d3b5c'
-    alb.ingress.kubernetes.io/subnets: subnet-0304543452f554e20,subnet-0304b609c266c4b60,subnet-0e3eaf19af3b27b05    
+    alb.ingress.kubernetes.io/subnets: subnet-0304543452f554e20,subnet-0304b609c266c4b60,subnet-0e3eaf19af3b27b05
     alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=1200
     alb.ingress.kubernetes.io/healthcheck-path: /health
     alb.ingress.kubernetes.io/load-balancer-attributes: deletion_protection.enabled=true
@@ -34,95 +34,5 @@ spec:
         backend:
           service:
             name: storehangfireservice-service
-            port:
-              number: 80
-  - host: configservice.ailab88.net
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: configservice-service
-            port:
-              number: 80
-  - host: bonusservice.ailab88.net
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: bonusservice-service
-            port:
-              number: 80
-  - host: commonservice.ailab88.net
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: commonservice-service
-            port:
-              number: 80
-  - host: geoipservice.ailab88.net
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: geoipservice-service
-            port:
-              number: 80
-  - host: storeservice.ailab88.net
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: storeservice-service
-            port:
-              number: 80
-  - host: tpservice.ailab88.net
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: tpservice-service
-            port:
-              number: 80
-  - host: tpservice-rls.ailab88.net
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: tpservice-rls-service
-            port:
-              number: 80
-  - host: adminsiteservice.ailab88.net
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: adminsite-service
-            port:
-              number: 80
-  - host: reportservice.ailab88.net
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: reportservice-service
             port:
               number: 80
