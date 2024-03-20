@@ -148,7 +148,70 @@ spec:
             service:
               name: membersite-rls-service
               port:
-                number: 80  
+                number: 80
+        - path: /en/profile
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80
+        - path: /cs/profile
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80
+        - path: /my/profile
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80
+        - path: /th/profile
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80
+        - path: /vn/profile
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80
+        - path: /hi/profile
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80
+        - path: /id/profile
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80
+        - path: /bd/profile
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80
+        - path: /kh/profile
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80     
         - path: /api/Site/GetSocialChannel
           pathType: Exact
           backend:
