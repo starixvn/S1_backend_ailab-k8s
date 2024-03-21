@@ -22,10 +22,10 @@ spec:
           resources:
             requests:
               cpu: "1"
-              memory: "3G"
+              memory: "5G"
             limits:
               cpu: "1"
-              memory: "4G"
+              memory: "6G"
           ports:
             - containerPort: 80
           env:
