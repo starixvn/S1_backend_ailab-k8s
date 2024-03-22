@@ -4,6 +4,7 @@ metadata:
   name: tpservice-worker-deployment  
   labels:
     app: tpworker
+    ENV: DEV
 spec:
   replicas: 1
   selector:
@@ -13,6 +14,7 @@ spec:
     metadata:
       labels:
         app: tpworker
+        ENV: DEV
     spec:
       containers:
         - name: tpworker

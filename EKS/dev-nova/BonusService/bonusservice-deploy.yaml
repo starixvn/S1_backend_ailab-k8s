@@ -14,7 +14,8 @@ spec:
   template:
     metadata:
       labels:
-        app: bonusservice      
+        app: bonusservice
+        ENV: DEV
     spec:
       containers:
         - name: bonusservice

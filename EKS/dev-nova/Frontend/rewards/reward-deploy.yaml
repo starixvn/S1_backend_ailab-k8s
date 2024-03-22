@@ -14,6 +14,7 @@ spec:
     metadata:
       labels:
         app: reward
+        ENV: DEV
     spec:
       containers:
         - name: reward

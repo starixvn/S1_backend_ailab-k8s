@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: reportservice
+        ENV: DEV
     spec:
       containers:
         - name: reportservice

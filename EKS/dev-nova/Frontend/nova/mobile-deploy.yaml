@@ -4,6 +4,7 @@ metadata:
   name: nova-mobile-deployment
   labels:
     app: nova-mobile
+    ENV: DEV
 spec:
   replicas: 3
   selector:
@@ -13,6 +14,7 @@ spec:
     metadata:
       labels:
         app: nova-mobile
+        ENV: DEV
     spec:
       containers:
         - name: nova-mobile

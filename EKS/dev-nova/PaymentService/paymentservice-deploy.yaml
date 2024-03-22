@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: paymentservice
+        ENV: DEV
     spec:
       containers:
         - name: paymentservice

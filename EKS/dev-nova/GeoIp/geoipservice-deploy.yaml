@@ -14,7 +14,8 @@ spec:
   template:
     metadata:
       labels:
-        app: geoipservice      
+        app: geoipservice
+        ENV: DEV
     spec:
       containers:
         - name: geoipservice

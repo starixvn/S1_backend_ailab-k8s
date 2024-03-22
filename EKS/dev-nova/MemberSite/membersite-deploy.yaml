@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: membersite
+        ENV: DEV
     spec:
       containers:
         - name: membersite

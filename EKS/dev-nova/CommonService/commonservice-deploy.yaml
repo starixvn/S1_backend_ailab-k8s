@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: commonservice
+        ENV: DEV
     spec:
       containers:
         - name: commonservice
