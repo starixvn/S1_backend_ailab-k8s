@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: reportservice-rls
+        ENV: PRD
     spec:
       containers:
         - name: reportservice-rls

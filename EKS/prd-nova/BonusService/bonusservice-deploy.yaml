@@ -14,7 +14,8 @@ spec:
   template:
     metadata:
       labels:
-        app: bonusservice      
+        app: bonusservice
+        ENV: PRD
     spec:
       containers:
         - name: bonusservice

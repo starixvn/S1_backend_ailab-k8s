@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: membersite-rls
+        ENV: PRD
     spec:
       containers:
         - name: membersite-rls

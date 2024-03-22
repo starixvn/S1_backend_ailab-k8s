@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: seamlesswallet
+        ENV: PRD
     spec:
       containers:
         - name: seamlesswallet

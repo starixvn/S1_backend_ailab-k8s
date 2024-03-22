@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: storeservice
+        ENV: PRD
     spec:
       containers:
         - name: storeservice

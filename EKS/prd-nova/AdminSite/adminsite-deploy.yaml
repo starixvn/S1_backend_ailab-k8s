@@ -14,7 +14,8 @@ spec:
   template:
     metadata:
       labels:
-        app: adminsite      
+        app: adminsite
+        ENV: PRD
     spec:
       containers:
         - name: adminsite

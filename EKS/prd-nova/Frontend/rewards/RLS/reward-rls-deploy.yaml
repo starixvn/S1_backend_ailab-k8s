@@ -14,6 +14,7 @@ spec:
     metadata:
       labels:
         app: reward-rls
+        ENV: PRD
     spec:
       containers:
         - name: reward-rls

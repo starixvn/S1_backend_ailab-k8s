@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: adminsite-rls
+        ENV: PRD
     spec:
       containers:
         - name: adminsite-rls

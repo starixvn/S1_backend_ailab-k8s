@@ -4,6 +4,7 @@ metadata:
   name: paymentservice-worker-deployment  
   labels:
     app: paymentworker
+    ENV: PRD
 spec:
   replicas: 1
   selector:
@@ -14,6 +15,7 @@ spec:
     metadata:
       labels:
         app: paymentworker
+        ENV: PRD
     spec:
       containers:
         - name: paymentworker
