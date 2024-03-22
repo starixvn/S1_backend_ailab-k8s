@@ -14,7 +14,8 @@ spec:
   template:
     metadata:
       labels:
-        app: adminsite      
+        app: adminsite
+        ENV: DEV
     spec:
       containers:
         - name: adminsite
