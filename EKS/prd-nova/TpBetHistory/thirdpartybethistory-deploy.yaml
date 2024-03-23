@@ -10,6 +10,7 @@ spec:
   selector:
     matchLabels:
       app: thirdpartybethistory
+  revisionHistoryLimit: 5
   template:
     metadata:
       labels:
