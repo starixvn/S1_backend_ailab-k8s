@@ -188,7 +188,7 @@ alertmanager:
 
     ## alertmanager data Persistent Volume size
     ##
-    size: 2Gi
+    size: 50Gi
 
     ## alertmanager data Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -810,7 +810,7 @@ server:
 
     ## Prometheus server data Persistent Volume size
     ##
-    size: 8Gi
+    size: 100Gi
 
     ## Prometheus server data Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -1125,7 +1125,7 @@ pushgateway:
 
     ## pushgateway data Persistent Volume size
     ##
-    size: 2Gi
+    size: 50Gi
 
     ## pushgateway data Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -1223,6 +1223,36 @@ serverFiles:
       # the endpoints associated with the default/kubernetes service using the
       # default named port `https`. This works for single API server deployments as
       # well as HA API server deployments.
+      # - job_name: membersitemetrics
+      #   static_configs:
+      #     - targets:
+      #       - membersite-service.default.svc.cluster.local:80
+   
+      - job_name: membersitemetrics
+        kubernetes_sd_configs:
+        - role: pod
+          namespaces:
+            names:
+            - default
+        relabel_configs:
+        - source_labels: [__meta_kubernetes_pod_label_app]
+          action: keep
+          regex: membersite
+        - action: labelmap
+          regex: __meta_kubernetes_pod_label_(.+)
+        - source_labels: [__address__]
+          action: replace
+          target_label: __address__
+          regex: (.+)
+          replacement: membersite-service.default.svc.cluster.local:80
+        - source_labels: [__meta_kubernetes_pod_name]
+          action: replace
+          target_label: instance
+        - source_labels: [__meta_kubernetes_namespace]
+          action: replace
+          target_label: namespace
+
+
       - job_name: 'kubernetes-apiservers'
 
         kubernetes_sd_configs:
