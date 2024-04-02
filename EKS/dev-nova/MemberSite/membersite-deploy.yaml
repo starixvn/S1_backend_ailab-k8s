@@ -49,6 +49,11 @@ spec:
             - name: membersite-pvc
               mountPath: /membersite
               subPath: logs/membersite
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 15
       volumes:
         - name: membersite-appsettings
           configMap:
