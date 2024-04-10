@@ -16,6 +16,9 @@ spec:
       labels:
         app: adminsite
         ENV: PRD
+      annotations:
+        prometheus.io/port: '5070'
+        prometheus.io/scrape: 'true'
     spec:
       containers:
         - name: adminsite
