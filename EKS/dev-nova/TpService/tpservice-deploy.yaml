@@ -10,6 +10,7 @@ spec:
   selector:
     matchLabels:
       app: tpservice  
+  revisionHistoryLimit: 5
   template:
     metadata:
       labels:
