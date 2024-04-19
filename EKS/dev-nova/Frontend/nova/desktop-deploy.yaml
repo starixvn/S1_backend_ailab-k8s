@@ -29,5 +29,10 @@ spec:
               memory: "3G"
           ports:
             - containerPort: 5073
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5073
+            initialDelaySeconds: 15
       imagePullSecrets:
         - name: harbor-secret 
