@@ -20,6 +20,10 @@ spec:
       containers:
         - name: nova-mobile
           image: harbor.ailabpte.co/mobile/next-nova88-dev:271a317
+          lifecycle:            
+            preStop:
+              exec:
+                command: ["/bin/sh","-c","sleep 70"]
           resources:
             requests:
               cpu: "1"
@@ -34,5 +38,6 @@ spec:
               path: /health
               port: 5074
             initialDelaySeconds: 15
+      terminationGracePeriodSeconds: 90
       imagePullSecrets:
         - name: harbor-secret
