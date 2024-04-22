@@ -20,6 +20,10 @@ spec:
       containers:
         - name: nova-rls-mobile
           image: harbor.ailabpte.co/mobile/next-nova88-rls:665719c
+          lifecycle:            
+            preStop:
+              exec:
+                command: ["/bin/sh","-c","sleep 70"]
           resources:
             requests:
               cpu: "0.5"
@@ -29,5 +33,11 @@ spec:
               memory: "2G"
           ports:
             - containerPort: 5074
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5074
+            initialDelaySeconds: 15
+      terminationGracePeriodSeconds: 90
       imagePullSecrets:
         - name: harbor-secret

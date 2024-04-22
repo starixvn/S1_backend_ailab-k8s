@@ -20,6 +20,10 @@ spec:
       containers:
         - name: reward-rls
           image: harbor.ailabpte.co/desktop/next-nova88-reward-rls:c5265e8
+          lifecycle:            
+            preStop:
+              exec:
+                command: ["/bin/sh","-c","sleep 70"]
           resources:
             requests:
               cpu: "0.5"
@@ -29,5 +33,11 @@ spec:
               memory: "2G"
           ports:
             - containerPort: 5073
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5073
+            initialDelaySeconds: 15
+      terminationGracePeriodSeconds: 90
       imagePullSecrets:
         - name: harbor-secret 
