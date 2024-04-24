@@ -33,11 +33,6 @@ spec:
               memory: "2G"
           ports:
             - containerPort: 5073
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 5073
-            initialDelaySeconds: 15
       terminationGracePeriodSeconds: 90
       imagePullSecrets:
         - name: harbor-secret 
