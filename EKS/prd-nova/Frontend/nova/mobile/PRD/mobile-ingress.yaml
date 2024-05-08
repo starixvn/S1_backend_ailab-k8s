@@ -85,7 +85,28 @@ spec:
             service:
               name: membersite-service
               port:
-                number: 80                      
+                number: 80
+        - path: /br/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /ko/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /jp/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
         - path: /en/Cashier
           pathType: Prefix
           backend:
@@ -149,6 +170,27 @@ spec:
               name: membersite-service
               port:
                 number: 80  
+        - path: /br/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /ko/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /jp/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
         - path: /api/Site/GetSocialChannel
           pathType: Exact
           backend:
