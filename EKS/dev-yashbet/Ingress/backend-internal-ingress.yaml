@@ -8,14 +8,14 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
-    alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:ap-southeast-1:761771912479:certificate/b2f710d7-f3e9-4d45-9f9b-c764604e9993'
-    alb.ingress.kubernetes.io/subnets: subnet-01e7e7bda293d8785,subnet-0d918c212f9ba2a81,subnet-0e3a2c7c694c8601b
+    alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:ap-southeast-1:420163908753:certificate/65761715-9f8a-4ca5-a586-ac68e7d42f74'    
+    alb.ingress.kubernetes.io/subnets: subnet-0dd11053ee9d25063,subnet-021afa84bccb5a03d,subnet-086d7ac1d1324cda0
     alb.ingress.kubernetes.io/healthcheck-path: /health
     alb.ingress.kubernetes.io/load-balancer-attributes: deletion_protection.enabled=true
 spec:
   ingressClassName: alb
   rules:
-  - host: configservice.nova88dev.com
+  - host: configservice.aiking88dev.net
     http:
       paths:
       - path: /
@@ -25,7 +25,7 @@ spec:
             name: configservice-service
             port:
               number: 80
-  - host: adminsiteservice.nova88dev.com
+  - host: adminsiteservice.aiking88dev.net
     http:
       paths:
       - path: /
@@ -35,213 +35,213 @@ spec:
             name: adminsite-service
             port:
               number: 80
-  - host: membersiteservice.nova88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: membersite-service
-            port:
-              number: 80
-  - host: membersiteappservice.nova88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: membersite-app-service
-            port:
-              number: 80
-  - host: bonusservice.nova88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: bonusservice-service
-            port:
-              number: 80
-  - host: commonservice.nova88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: commonservice-service
-            port:
-              number: 80
-  - host: geoipservice.nova88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: geoipservice-service
-            port:
-              number: 80
-  - host: hangfireservice.nova88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: hangfireservice-service
-            port:
-              number: 80
-  - host: paymentservice.nova88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: payservice-service
-            port:
-              number: 80
-  - host: storeservice.nova88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: storeservice-service
-            port:
-              number: 80
-  - host: storehangfireservice.nova88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: storehangfireservice-service
-            port:
-              number: 80
-  - host: tpservice.nova88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: tpservice-service
-            port:
-              number: 80
-  - host: seamlesswalletservice.nova88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: seamlesswallet-service
-            port:
-              number: 80
-  - host: reportservice.nova88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: reportservice-service 
-            port:
-              number: 80
-  - host: www.n88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: membersite-service
-            port:
-              number: 80
-  - host: m.n88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: membersite-service
-            port:
-              number: 80
-  - host: stag.goal123.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: membersite-service
-            port:
-              number: 80
-  - host: stag.bwing.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: membersite-service
-            port:
-              number: 80
-  - host: www.bwingdev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: membersite-service
-            port:
-              number: 80
-  - host: stag.ivorysport.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: membersite-service
-            port:
-              number: 80
-  - host: appstag.n88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: membersite-app-service
-            port:
-              number: 80
-  - host: appstag.goal123.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: membersite-app-service
-            port:
-              number: 80
-  - host: appstag.bwing.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: membersite-app-service
-            port:
-              number: 80
+  # - host: membersiteservice.nova88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: membersite-service
+  #           port:
+  #             number: 80
+  # - host: membersiteappservice.nova88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: membersite-app-service
+  #           port:
+  #             number: 80
+  # - host: bonusservice.nova88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: bonusservice-service
+  #           port:
+  #             number: 80
+  # - host: commonservice.nova88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: commonservice-service
+  #           port:
+  #             number: 80
+  # - host: geoipservice.nova88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: geoipservice-service
+  #           port:
+  #             number: 80
+  # - host: hangfireservice.nova88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: hangfireservice-service
+  #           port:
+  #             number: 80
+  # - host: paymentservice.nova88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: payservice-service
+  #           port:
+  #             number: 80
+  # - host: storeservice.nova88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: storeservice-service
+  #           port:
+  #             number: 80
+  # - host: storehangfireservice.nova88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: storehangfireservice-service
+  #           port:
+  #             number: 80
+  # - host: tpservice.nova88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: tpservice-service
+  #           port:
+  #             number: 80
+  # - host: seamlesswalletservice.nova88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: seamlesswallet-service
+  #           port:
+  #             number: 80
+  # - host: reportservice.nova88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: reportservice-service 
+  #           port:
+  #             number: 80
+  # - host: www.n88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: membersite-service
+  #           port:
+  #             number: 80
+  # - host: m.n88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: membersite-service
+  #           port:
+  #             number: 80
+  # - host: stag.goal123.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: membersite-service
+  #           port:
+  #             number: 80
+  # - host: stag.bwing.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: membersite-service
+  #           port:
+  #             number: 80
+  # - host: www.bwingdev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: membersite-service
+  #           port:
+  #             number: 80
+  # - host: stag.ivorysport.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: membersite-service
+  #           port:
+  #             number: 80
+  # - host: appstag.n88dev.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: membersite-app-service
+  #           port:
+  #             number: 80
+  # - host: appstag.goal123.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: membersite-app-service
+  #           port:
+  #             number: 80
+  # - host: appstag.bwing.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: membersite-app-service
+  #           port:
+  #             number: 80
