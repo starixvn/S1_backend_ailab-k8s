@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bonusservice-deployment  
+  labels:
+    app: bonusservice
+    ENV: DEV
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bonusservice
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        app: bonusservice
+        ENV: DEV
+    spec:
+      containers:
+        - name: bonusservice
+          image: harbor.ailabpte.co/bonusservice/bonusservice:21f28a7
+          resources:
+            requests:
+              cpu: "0.5"
+              memory: "1G"
+            limits:
+              cpu: "1"
+              memory: "2G"
+          ports:
+            - containerPort: 50997
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: bonusservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: API
+            - name: Brand
+              value: Nova
+          volumeMounts:
+            - name: bonusservice-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+            - name: bonusservice-pvc
+              mountPath: /bonus
+              subPath: logs/bonus
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 50997
+      volumes:
+        - name: bonusservice-appsettings
+          configMap:
+            name: bonusservice-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+        - name: bonusservice-pvc
+          persistentVolumeClaim:
+            claimName: bonusservice-pvc
+      imagePullSecrets:
+        - name: harbor-secret

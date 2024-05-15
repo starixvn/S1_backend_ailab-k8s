@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tpwager-deployment  
+  labels:
+    app: tpwager
+    ENV: DEV
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tpwager
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        app: tpwager
+        ENV: DEV
+    spec:
+      containers:
+        - name: tpwager
+          image: harbor.ailabpte.co/integratedservice/thirdpartywager:26addc7
+          resources:
+            requests:
+              cpu: "0.5"
+              memory: "1.5G"
+            limits:
+              cpu: "0.5"
+              memory: "1.5G"
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: tpwager-configmap
+                  key: environment
+            - name: ServiceType
+              value: Worker
+            - name: Brand
+              value: Nova
+          volumeMounts:
+            - name: tpwager-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+            - name: tpwager-pvc
+              mountPath: /tpwager
+              subPath: logs/tpwager
+      volumes:
+        - name: tpwager-appsettings
+          configMap:
+            name: tpwager-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+        - name: tpwager-pvc
+          persistentVolumeClaim:
+            claimName: tpwager-pvc
+      imagePullSecrets:
+        - name: harbor-secret

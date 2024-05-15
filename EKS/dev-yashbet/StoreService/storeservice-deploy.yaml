@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storeservice-deployment  
+  labels:
+    app: storeservice
+    ENV: DEV
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storeservice
+  revisionHistoryLimit: 5 
+  template:
+    metadata:
+      labels:
+        app: storeservice
+        ENV: DEV
+    spec:
+      containers:
+        - name: storeservice
+          image: harbor.ailabpte.co/storeservice/storeservice:e14b360
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.5"
+              memory: "1G" 
+          ports:
+            - containerPort: 51001
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: storeservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: API
+            - name: Brand
+              value: Nova
+          volumeMounts:
+            - name: storeservice-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+            - name: storeservice-pvc
+              mountPath: /storeservice
+              subPath: logs/storeservice
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 51001
+      volumes:
+        - name: storeservice-appsettings
+          configMap:
+            name: storeservice-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+        - name: storeservice-pvc
+          persistentVolumeClaim:
+            claimName: storeservice-pvc
+      imagePullSecrets:
+        - name: harbor-secret

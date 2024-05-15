@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adminsite-deployment
+  labels:
+    app: adminsite
+    ENV: DEV
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adminsite
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        app: adminsite
+        ENV: DEV
+      annotations:
+        prometheus.io/port: '5070'
+        prometheus.io/scrape: 'true'
+    spec:
+      containers:
+        - name: adminsite
+          image: harbor.ailabpte.co/adminsite/backendsite:033365f
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.5"
+              memory: "1G" 
+          ports:
+            - containerPort: 5070
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: adminsite-configmap
+                  key: environment
+            - name: ServiceType
+              value: API
+            - name: Brand
+              value: Nova
+          volumeMounts:
+            - name: adminsite-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+            - name: adminsite-pvc
+              mountPath: /backendsite
+              subPath: logs/backendsite  
+      volumes:
+        - name: adminsite-appsettings
+          configMap:
+            name: adminsite-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+        - name: adminsite-pvc
+          persistentVolumeClaim:
+            claimName: adminsite-pvc
+      imagePullSecrets:
+        - name: harbor-secret

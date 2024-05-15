@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentservice-deployment  
+  labels:
+    app: paymentservice
+    ENV: DEV
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paymentservice  
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        app: paymentservice
+        ENV: DEV
+    spec:
+      containers:
+        - name: paymentservice
+          image: harbor.ailabpte.co/paymentservice/paymentservice:6bbc3b5
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.5"
+              memory: "1G" 
+          ports:
+            - containerPort: 59159
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: paymentservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: API
+            - name: Brand
+              value: Nova
+          volumeMounts:
+            - name: paymentservice-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+            - name: paymentservice-pvc
+              mountPath: /payment
+              subPath: logs/payment
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 59159
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 59159
+            initialDelaySeconds: 10  
+      volumes:
+        - name: paymentservice-appsettings
+          configMap:
+            name: paymentservice-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+        - name: paymentservice-pvc
+          persistentVolumeClaim:
+            claimName: paymentservice-pvc
+      imagePullSecrets:
+        - name: harbor-secret

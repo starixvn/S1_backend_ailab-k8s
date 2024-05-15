@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bonusservice-worker-deployment  
+  labels:
+    app: bonusworker
+    ENV: DEV
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bonusworker  
+  template:
+    metadata:
+      labels:
+        app: bonusworker
+        ENV: DEV
+    spec:
+      containers:
+        - name: bonusworker
+          image: harbor.ailabpte.co/bonusservice/bonusservice:fa601cb
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.25"
+              memory: "0.5G" 
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: bonusservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: Worker
+            - name: Brand
+              value: Nova
+          volumeMounts:
+            - name: bonusservice-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+            - name: bonusservice-pvc
+              mountPath: /bonus
+              subPath: logs/bonusWorker
+      volumes:
+        - name: bonusservice-appsettings
+          configMap:
+            name: bonusservice-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+        - name: bonusservice-pvc
+          persistentVolumeClaim:
+            claimName: bonusservice-pvc
+      imagePullSecrets:
+        - name: harbor-secret

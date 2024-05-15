@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: storehangfireservice-service  
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 51003
+  selector:
+    app: storehangfireservice

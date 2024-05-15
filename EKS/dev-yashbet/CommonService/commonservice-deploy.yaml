@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:  
+  name: commonservice-deployment  
+  labels:
+    app: commonservice
+    ENV: DEV
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commonservice
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        app: commonservice
+        ENV: DEV
+    spec:
+      containers:
+        - name: commonservice
+          image: harbor.ailabpte.co/integratedservice/commonservice:b2d39eb
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.5"
+              memory: "1G" 
+          ports:
+            - containerPort: 59359
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: commonservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: API
+            - name: Brand
+              value: Nova
+          volumeMounts:
+            - name: commonservice-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+            - name: commonservice-pvc
+              mountPath: /common
+              subPath: logs/common
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 59359
+      volumes:
+        - name: commonservice-appsettings
+          configMap:
+            name: commonservice-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+        - name: commonservice-pvc
+          persistentVolumeClaim:
+            claimName: commonservice-pvc
+      imagePullSecrets:
+        - name: harbor-secret

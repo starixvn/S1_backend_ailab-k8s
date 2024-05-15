@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: membersite-app-deployment
+  labels:
+    app: membersite-app
+    ENV: DEV
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: membersite-app
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        app: membersite-app
+        ENV: DEV
+      annotations:
+        prometheus.io/port: '80'
+        prometheus.io/scrape: 'true'
+    spec:
+      containers:
+        - name: membersite-app
+          image: harbor.ailabpte.co/membersite/membersite:1f62855
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.5"
+              memory: "1G"
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: membersiteapp-configmap
+                  key: environment
+            - name: ServiceType
+              value: API
+            - name: Brand
+              value: Nova
+          volumeMounts:
+            - name: membersiteapp-appsettings
+              mountPath: /app/appsettings.Development.APP.json
+              subPath: appsettings.Development.APP.json
+            - name: membersite-pvc
+              mountPath: /membersite
+              subPath: logs/membersiteApp
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 15
+      volumes:
+        - name: membersiteapp-appsettings
+          configMap:
+            name: membersiteapp-configmap
+            items:
+              - key: appsettings.Development.APP
+                path: appsettings.Development.APP.json
+        - name: membersite-pvc
+          persistentVolumeClaim:
+            claimName: membersite-pvc
+      imagePullSecrets:
+        - name: harbor-secret

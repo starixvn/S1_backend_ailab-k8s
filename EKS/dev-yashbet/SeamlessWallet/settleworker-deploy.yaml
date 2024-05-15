@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: settleworker-deployment  
+  labels:
+    app: settleworker
+    ENV: DEV
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: settleworker  
+  template:
+    metadata:
+      labels:
+        app: settleworker
+        ENV: DEV
+    spec:
+      containers:
+        - name: settleworker
+          image: harbor.ailabpte.co/integratedservice/thirdpartysettleworker:83f67a9
+          resources:
+            requests:
+              cpu: "0.5"
+              memory: "1.5G"
+            limits:
+              cpu: "0.5"
+              memory: "1.5G" 
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: seamlesswallet-configmap
+                  key: environment
+            - name: ServiceType
+              value: Worker
+            - name: Brand
+              value: Nova
+          volumeMounts:
+            - name: settleworker-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+            - name: settleworker-pvc
+              mountPath: /settleworker
+              subPath: logs/settleworker
+      volumes:
+        - name: settleworker-appsettings
+          configMap:
+            name: seamlesswallet-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+        - name: settleworker-pvc
+          persistentVolumeClaim:
+            claimName: settleworker-pvc
+      imagePullSecrets:
+        - name: harbor-secret
