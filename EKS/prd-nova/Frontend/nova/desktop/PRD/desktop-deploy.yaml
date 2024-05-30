@@ -27,10 +27,10 @@ spec:
           resources:
             requests:
               cpu: "1"
-              memory: "2G"
+              memory: "6G"
             limits:
-              cpu: "1"
-              memory: "4G"
+              cpu: "2"
+              memory: "12G"
           ports:
             - containerPort: 5073
           readinessProbe:
