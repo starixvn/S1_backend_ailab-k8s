@@ -7,6 +7,7 @@ metadata:
     alb.ingress.kubernetes.io/load-balancer-name: prd-nova-mobile-ingress-v3
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip 
+    alb.ingress.kubernetes.io/security-groups: sg-09d48f6b705e16be7,sg-071daa1406c731fa6,sg-08cbe5aee36025802
     alb.ingress.kubernetes.io/subnets: subnet-045d980c50e6dc7b4,subnet-056fe0386b9b46a40,subnet-0bcd9c088afc673e6
     alb.ingress.kubernetes.io/healthcheck-path: /health
     alb.ingress.kubernetes.io/load-balancer-attributes: deletion_protection.enabled=true
