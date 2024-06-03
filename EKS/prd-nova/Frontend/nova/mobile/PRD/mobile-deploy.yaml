@@ -26,11 +26,11 @@ spec:
                 command: ["/bin/sh","-c","sleep 70"]
           resources:
             requests:
-              cpu: "2"
-              memory: "16G"
+              cpu: "1"
+              memory: "6G"
             limits:
-              cpu: "4"
-              memory: "30G"
+              cpu: "2"
+              memory: "12G"
           ports:
             - containerPort: 5074
           readinessProbe:
