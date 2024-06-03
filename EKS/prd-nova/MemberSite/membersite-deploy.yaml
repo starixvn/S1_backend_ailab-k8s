@@ -25,11 +25,11 @@ spec:
           image: harbor.ailabpte.co/membersite/membersite:065c17e
           resources:
             requests:
-              cpu: "2"
-              memory: "8G"
+              cpu: "1"
+              memory: "6G"
             limits:
-              cpu: "4"
-              memory: "16G"
+              cpu: "2"
+              memory: "12G"
           ports:
             - containerPort: 80
           env:
@@ -49,11 +49,11 @@ spec:
             - name: membersite-pvc
               mountPath: /membersite
               subPath: logs/membersite
-          # readinessProbe:
-          #   httpGet:
-          #     path: /health
-          #     port: 80
-          #   initialDelaySeconds: 15   
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 15   
       volumes:
         - name: membersite-appsettings
           configMap:
