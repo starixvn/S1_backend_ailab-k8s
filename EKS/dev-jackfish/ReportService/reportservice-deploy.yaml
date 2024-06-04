@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: reportservice
-          image: harbor.ailabpte.co/reportservice/reportservice:b5605b1
+          image: harbor.ailabpte.co/reportservice/reportservice:5e79abd
           resources:
             requests:
               cpu: "0.25"
