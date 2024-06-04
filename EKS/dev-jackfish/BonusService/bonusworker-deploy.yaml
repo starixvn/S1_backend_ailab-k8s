@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: bonusworker
-          image: harbor.ailabpte.co/bonusservice/bonusservice:fa601cb
+          image: harbor.ailabpte.co/bonusservice/bonusservice:601a538
           resources:
             requests:
               cpu: "0.25"
