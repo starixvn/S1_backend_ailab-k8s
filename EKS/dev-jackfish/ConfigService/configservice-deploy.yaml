@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: configservice
-          image: harbor.ailabpte.co/configservice/configservice:35046f7
+          image: harbor.ailabpte.co/configservice/configservice:ca5dcb6
           resources:
             requests:
               cpu: "0.25"
@@ -34,7 +34,7 @@ spec:
             - name: ServiceType
               value: API
             - name: DBGroup
-              value: Leobet
+              value: Jackfish
           livenessProbe:
             httpGet:
               path: /health
