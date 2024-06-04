@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: tpworker
-          image: harbor.ailabpte.co/integratedservice/thirdpartyservice:30ab391
+          image: harbor.ailabpte.co/integratedservice/thirdpartyservice:037eae9
           resources:
             requests:
               cpu: "0.25"
