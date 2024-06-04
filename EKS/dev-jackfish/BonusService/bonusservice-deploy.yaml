@@ -6,7 +6,7 @@ metadata:
     app: bonusservice
     ENV: DEV
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: bonusservice
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: bonusservice
-          image: harbor.ailabpte.co/bonusservice/bonusservice:21f28a7
+          image: harbor.ailabpte.co/bonusservice/bonusservice:601a538
           resources:
             requests:
               cpu: "0.5"
