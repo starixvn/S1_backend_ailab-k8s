@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: hangfireservice
-          image: harbor.ailabpte.co/hangfireservice/hangfireservice:9067850
+          image: harbor.ailabpte.co/hangfireservice/hangfireservice:6998d5f
           resources:
             requests:
               cpu: "2"

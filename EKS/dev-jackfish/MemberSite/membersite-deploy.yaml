@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: membersite
-          image: harbor.ailabpte.co/membersite/membersite:1f62855
+          image: harbor.ailabpte.co/membersite/membersite:34b0770
           resources:
             requests:
               cpu: "0.5"
