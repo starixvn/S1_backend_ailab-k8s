@@ -7,15 +7,15 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: membersite-deployment
-  minReplicas: 6
-  maxReplicas: 15
+  minReplicas: 15
+  maxReplicas: 30
   metrics:
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 60
+        averageUtilization: 30
   - type: Resource
     resource:
       name: memory
