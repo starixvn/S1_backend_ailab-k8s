@@ -22,11 +22,11 @@ spec:
           image: harbor.ailabpte.co/hangfireservice/hangfireservice:474e031 
           resources:
             requests:
-              cpu: "1"
-              memory: "2G"
-            limits:
               cpu: "2"
               memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G"
           ports:
             - containerPort: 45678
           env:
@@ -50,6 +50,7 @@ spec:
             httpGet:
               path: /health
               port: 45678
+            timeoutSeconds: 5
       volumes:
         - name: hangfireservice-appsettings
           configMap:
