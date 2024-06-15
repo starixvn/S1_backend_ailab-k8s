@@ -22,11 +22,11 @@ spec:
           image: harbor.ailabpte.co/integratedservice/thirdpartyservice:e872bcc
           resources:
             requests:
-              cpu: "0.5"
-              memory: "2G"
+              cpu: "8"
+              memory: "16G"
             limits:
-              cpu: "0.5"
-              memory: "3G"  
+              cpu: "16"
+              memory: "32G"  
           ports:
             - containerPort: 55996
           env:
