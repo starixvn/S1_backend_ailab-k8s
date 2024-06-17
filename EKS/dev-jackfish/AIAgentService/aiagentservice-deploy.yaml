@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiagentservice-deployment
+  labels:
+    app: aiagentservice
+    ENV: DEV
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aiagentservice
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        app: aiagentservice
+        ENV: DEV
+    spec:
+      containers:
+        - name: aiagentservice
+          image: harbor.ailabpte.co/agentservice/aiagentservice:be87c7c
+          resources:
+            requests:
+              cpu: "0.25"
+              memory: "0.5G"
+            limits:
+              cpu: "0.5"
+              memory: "1G"
+          ports:
+            - containerPort: 5438
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: reportservice-configmap
+                  key: environment
+            - name: ServiceType
+              value: API
+            - name: Brand
+              value: JackFish
+          volumeMounts:
+            - name: aiagentservice-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+            - name: aiagentservice-pvc
+              mountPath: /aiagentservice
+              subPath: logs/aiagentservice
+      volumes:
+        - name: aiagentservice-appsettings
+          configMap:
+            name: aiagentservice-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+        - name: aiagentservice-pvc
+          persistentVolumeClaim:
+            claimName: aiagentservice-pvc
+      imagePullSecrets:
+        - name: harbor-secret

@@ -95,13 +95,13 @@ spec:
             name: reportservice-service 
             port:
               number: 80
-  # - host: hangfireservice.myjackfishdev.com
-  #   http:
-  #     paths:
-  #     - path: /
-  #       pathType: Prefix
-  #       backend:
-  #         service:
-  #           name: hangfireservice-service
-  #           port:
-  #             number: 80
+  - host: aiagentservice.myjackfishdev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: aiagentservice-service
+            port:
+              number: 80

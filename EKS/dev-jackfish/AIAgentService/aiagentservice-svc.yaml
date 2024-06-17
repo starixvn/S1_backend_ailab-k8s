@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aiagentservice-service  
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 5438
+  type: ClusterIP
+  selector:
+    app: aiagentservice
