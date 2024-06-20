@@ -105,3 +105,13 @@ spec:
             name: aiagentservice-service
             port:
               number: 80
+  - host: aiagenthangfireservice.myjackfishdev.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: aiagenthangfireservice-service
+            port:
+              number: 80
