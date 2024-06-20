@@ -24,16 +24,6 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-   - /logs/membersiteApp/*.log
-  fields:
-    es_index: dev-membersite
-    logtype: membersiteApp
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
    - /logs/backendsite/*.log
   fields:
     es_index: dev-backend
@@ -174,22 +164,33 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /logs/geoip/*.log
-  fields:
-    es_index: dev-geoip
-    logtype: geoip
-  json.keys_under_root: true
-  json.add_error_key: true
-
-- type: log
-  enabled: true
-  paths:
     - /logs/reportservice/*.log
   fields:
     es_index: dev-report
     logtype: report
   json.keys_under_root: true
   json.add_error_key: true
+
+- type: log
+  enabled: true
+  paths:
+    - /logs/aiagentservice/*.log
+  fields:
+    es_index: dev-aiagentservice
+    logtype: aiagentservice
+  json.keys_under_root: true
+  json.add_error_key: true
+
+- type: log
+  enabled: true
+  paths:
+    - /logs/aiagentworker/*.log
+  fields:
+    es_index: dev-aiagenthangfire
+    logtype: aiagenthangfire
+  json.keys_under_root: true
+  json.add_error_key: true
+
 
 # ============================== Filebeat modules ==============================
 
@@ -203,21 +204,21 @@ setup.ilm.enabled: false
 ilm.enabled: false
 # ------------------------------ Logstash Output -------------------------------
 output.logstash:
-  hosts: ["172.31.48.203:5044"]
+  hosts: ["172.31.54.83:5044"]
   # index: "dev-payment"
   # Prod Porxy
   # proxy_url: 'http://10.4.194.100:3128'
 
 # ================================= Processors =================================
-processors:
-  - add_host_metadata: ~
-  - add_tags:
-     tags: ["54.179.231.97"]
-     target: "host.ip"
-      # when.not.contains.tags: forwarded
-  # - add_cloud_metadata: ~
-  # - add_docker_metadata: ~
-  # - add_kubernetes_metadata: ~
+# processors:
+#   - add_host_metadata: ~
+#   - add_tags:
+#      tags: ["54.179.231.97"]
+#      target: "host.ip"
+#       # when.not.contains.tags: forwarded
+#   # - add_cloud_metadata: ~
+#   # - add_docker_metadata: ~
+#   # - add_kubernetes_metadata: ~
 
 # ================================== Logging ===================================
 logging.level: info
