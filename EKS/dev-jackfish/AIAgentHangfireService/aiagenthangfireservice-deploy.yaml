@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiagent-hangfireservice-deployment  
+  labels:
+    app: aiagent-hangfireservice
+    ENV: DEV
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aiagent-hangfireservice
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        app: aiagent-hangfireservice
+        ENV: DEV
+    spec:
+      containers:
+        - name: aiagent-hangfireservice
+          image: harbor.ailabpte.co/agentservice/aiagenthangfireservice:ada3b1b
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4G"
+            limits:
+              cpu: "4"
+              memory: "8G"
+          ports:
+            - containerPort: 5437
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: aiagent-hangfireservice-configmap
+                  key: environment
+            - name: Worker
+              value: API
+            - name: Brand
+              value: JackFish
+          volumeMounts:
+            - name: aiagent-hangfireservice-appsettings
+              mountPath: /app/appsettings.Development.json
+              subPath: appsettings.Development.json
+            - name: aiagent-hangfireservice-pvc
+              mountPath: /aiagentworker
+              subPath: logs/aiagentworker
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5437
+      volumes:
+        - name: aiagent-hangfireservice-appsettings
+          configMap:
+            name: aiagent-hangfireservice-configmap
+            items:
+              - key: appsettings.Development
+                path: appsettings.Development.json
+        - name: aiagent-hangfireservice-pvc
+          persistentVolumeClaim:
+            claimName: aiagent-hangfireservice-pvc
+      imagePullSecrets:
+        - name: harbor-secret
