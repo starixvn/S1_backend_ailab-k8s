@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aiagent-hangfireservice-deployment  
+  name: aiagenthangfireservice-deployment  
   labels:
     app: aiagent-hangfireservice
     ENV: DEV
