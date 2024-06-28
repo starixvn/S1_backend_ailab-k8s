@@ -246,6 +246,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: tuk555-mobile-service #temp
+              name: tuk555-mobile-service
               port:
                 number: 80
