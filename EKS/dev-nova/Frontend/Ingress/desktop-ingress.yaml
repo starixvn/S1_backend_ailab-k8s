@@ -246,6 +246,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: nova-desktop-service #temp
+              name: tuk555-desktop-service #temp
               port:
                 number: 80

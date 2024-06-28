@@ -246,6 +246,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: nova-mobile-service #temp
+              name: tuk555-mobile-service #temp
               port:
                 number: 80
