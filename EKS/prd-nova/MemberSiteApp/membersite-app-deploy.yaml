@@ -22,7 +22,11 @@ spec:
     spec:
       containers:
         - name: membersite-app
-          image: harbor.ailabpte.co/membersite/membersite:065c17e 
+          image: harbor.ailabpte.co/membersite/membersite:065c17e
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh","-c","sleep 70"]
           resources:
             requests:
               cpu: "8"
@@ -53,7 +57,8 @@ spec:
             httpGet:
               path: /health
               port: 80
-            initialDelaySeconds: 15   
+            initialDelaySeconds: 15
+      terminationGracePeriodSeconds: 90
       volumes:
         - name: membersiteapp-appsettings
           configMap:
