@@ -39,6 +39,28 @@ data:
         Logstash_Format On
         Logstash_Prefix dev-reward
   
+    [OUTPUT]
+        Name es
+        Match *.tuk555-desktop-deployment-*.log
+        Host 172.31.48.203
+        Port 9200
+        HTTP_User elastic
+        HTTP_Passwd #WpF&@$h2J8Y6LH5
+        Type _doc
+        Logstash_Format On
+        Logstash_Prefix dev-tuk555-desktop
+  
+    [OUTPUT]
+        Name es
+        Match *.tuk555-mobile-deployment-*.log
+        Host 172.31.48.203
+        Port 9200
+        HTTP_User elastic
+        HTTP_Passwd #WpF&@$h2J8Y6LH5
+        Type _doc
+        Logstash_Format On
+        Logstash_Prefix dev-tuk555-mobile
+
   parsers.conf: |    
     [PARSER]
         Name crio
