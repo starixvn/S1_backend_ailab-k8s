@@ -7,7 +7,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: nova-desktop-deployment
-  minReplicas: 15
+  minReplicas: 6
   maxReplicas: 30
   metrics:
   - type: Resource
