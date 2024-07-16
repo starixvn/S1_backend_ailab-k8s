@@ -7,8 +7,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: membersite-deployment
-  minReplicas: 10
-  maxReplicas: 30
+  minReplicas: 6
+  maxReplicas: 15
   metrics:
   - type: Resource
     resource:
