@@ -8,7 +8,7 @@ spec:
     kind: Deployment
     name: nova-desktop-backup-deployment             
   minReplicas: 3
-  maxReplicas: 15
+  maxReplicas: 9
   metrics:
   - type: Resource
     resource:
