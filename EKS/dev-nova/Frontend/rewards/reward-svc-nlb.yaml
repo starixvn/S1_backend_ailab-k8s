@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: reward-service-nlb
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-name: dev-reward-service-nlb
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-09332247c64aff074,subnet-01756b250ebae0fae,subnet-0ea1391c518fe60dc
+    service.beta.kubernetes.io/aws-load-balancer-security-groups: sg-017bc3d4b4897d5f4
+spec:  
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 5073
+  type: LoadBalancer
+  selector:
+    app: reward
