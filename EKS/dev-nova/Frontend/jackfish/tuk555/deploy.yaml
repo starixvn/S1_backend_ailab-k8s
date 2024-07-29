@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jackfish-tuk555-deployment  
+  labels:
+    app: jackfish-tuk555
+    ENV: DEV
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: jackfish-tuk555
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        app: jackfish-tuk555
+        ENV: DEV
+    spec:
+      containers:
+        - name: jackfish-tuk555
+          image: harbor.ailabpte.co/jackfish-frontend/tuk555-dev:45fe7c0
+          lifecycle:            
+            preStop:
+              exec:
+                command: ["/bin/sh","-c","sleep 70"]
+          resources:
+            requests:
+              cpu: "1"
+              memory: "2G"
+            limits:
+              cpu: "1"
+              memory: "3G"
+          ports:
+            - containerPort: 5073
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5073
+            initialDelaySeconds: 15
+      terminationGracePeriodSeconds: 90
+      imagePullSecrets:
+        - name: harbor-secret 
