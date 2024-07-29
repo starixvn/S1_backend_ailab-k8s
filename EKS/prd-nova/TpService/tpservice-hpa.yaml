@@ -7,7 +7,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: tpservice-deployment
-  minReplicas: 6
+  minReplicas: 4
   maxReplicas: 15
   metrics:
   - type: Resource

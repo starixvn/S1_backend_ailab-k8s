@@ -23,6 +23,10 @@ spec:
       containers:
         - name: membersite-rls
           image: harbor.ailabpte.co/membersite/membersite:065c17e
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh","-c","sleep 70"]
           resources:
             requests:
               cpu: "1"
