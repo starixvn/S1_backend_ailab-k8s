@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: jackfish-tuk555
-          image: harbor.ailabpte.co/jackfish-frontend/tuk555-dev:45fe7c0
+          image: harbor.ailabpte.co/jackfish-frontend/tuk555-dev:c80066f
           lifecycle:            
             preStop:
               exec:
