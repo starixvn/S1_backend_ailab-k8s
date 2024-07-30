@@ -246,6 +246,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: tuk555-desktop-service
+              name: jackfish-tuk555-service
               port:
                 number: 80
