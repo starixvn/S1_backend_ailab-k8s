@@ -41,25 +41,14 @@ data:
   
     [OUTPUT]
         Name es
-        Match *.tuk555-desktop-deployment-*.log
+        Match *.jackfish-tuk555-deployment-*.log
         Host 172.31.48.203
         Port 9200
         HTTP_User elastic
         HTTP_Passwd #WpF&@$h2J8Y6LH5
         Type _doc
         Logstash_Format On
-        Logstash_Prefix dev-tuk555-desktop
-  
-    [OUTPUT]
-        Name es
-        Match *.tuk555-mobile-deployment-*.log
-        Host 172.31.48.203
-        Port 9200
-        HTTP_User elastic
-        HTTP_Passwd #WpF&@$h2J8Y6LH5
-        Type _doc
-        Logstash_Format On
-        Logstash_Prefix dev-tuk555-mobile
+        Logstash_Prefix dev-jackfish-tuk555
 
   parsers.conf: |    
     [PARSER]
