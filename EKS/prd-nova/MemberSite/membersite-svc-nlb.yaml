@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prd-membersite-service-nlb
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-name: prd-membersite-service-nlb
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-045d980c50e6dc7b4,subnet-056fe0386b9b46a40,subnet-0bcd9c088afc673e6
+    service.beta.kubernetes.io/aws-load-balancer-security-groups: sg-08cbe5aee36025802,sg-085b2f5ce90c8efe4,sg-07de57958c88b7c9f
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  type: LoadBalancer
+  selector:
+    app: membersite
