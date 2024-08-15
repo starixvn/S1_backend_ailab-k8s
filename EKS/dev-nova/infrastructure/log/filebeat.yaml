@@ -1,15 +1,15 @@
 
 filebeat.inputs:
 
-- type: log
-  enabled: true
-  paths:
-    - /logs/hangfire/*.log
-  fields:
-    es_index: dev-hangfire
-    logtype: hangfire
-  json.keys_under_root: true
-  json.add_error_key: true
+# - type: log
+#   enabled: true
+#   paths:
+#     - /logs/hangfire/*.log
+#   fields:
+#     es_index: dev-hangfire
+#     logtype: hangfire
+#   json.keys_under_root: true
+#   json.add_error_key: true
 
 - type: log
   enabled: true

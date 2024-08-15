@@ -1,3 +1,4 @@
+PRD
 ```
 docker run -d -v /prd_logs/logs:/logs -v /usr/share/filebeat/filebeat_prd_membersite.yml:/usr/share/filebeat/filebeat.yml --user=root --restart always --name prd-filebeat_prd_membersite docker.elastic.co/beats/filebeat:7.15.2
 docker run -d -v /prd_logs/logs:/logs -v /usr/share/filebeat/filebeat_prd_seamless.yml:/usr/share/filebeat/filebeat.yml --user=root --restart always --name prd-filebeat_prd_seamless docker.elastic.co/beats/filebeat:7.15.2
@@ -12,3 +13,9 @@ docker run -d -v /prd_logs/logs:/logs -v /usr/share/filebeat/filebeat_prd_store.
 docker run -d -v /prd_logs/logs:/logs -v /usr/share/filebeat/filebeat_prd_geoip.yml:/usr/share/filebeat/filebeat.yml --user=root --restart always --name prd-filebeat_prd_geoip docker.elastic.co/beats/filebeat:7.15.2
 docker run -d -v /prd_logs/logs:/logs -v /usr/share/filebeat/filebeat_prd_report.yml:/usr/share/filebeat/filebeat.yml --user=root --restart always --name prd-filebeat_prd_report docker.elastic.co/beats/filebeat:7.15.2
 ```
+
+DEV
+```
+docker run -d -v /dev_logs/logs:/logs -v /usr/share/filebeat/filebeat_dev_hangfire.yml:/usr/share/filebeat/filebeat.yml --user=root --restart always --name dev-filebeat_dev_hangfire docker.elastic.co/beats/filebeat:7.15.2
+
+```p
