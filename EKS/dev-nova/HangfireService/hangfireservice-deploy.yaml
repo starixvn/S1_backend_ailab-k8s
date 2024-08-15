@@ -23,10 +23,10 @@ spec:
           resources:
             requests:
               cpu: "2"
-              memory: "4G"
+              memory: "12G"
             limits:
               cpu: "4"
-              memory: "8G"
+              memory: "16G"
           ports:
             - containerPort: 45678
           env:
@@ -46,11 +46,11 @@ spec:
             - name: hangfireservice-pvc
               mountPath: /hangfire
               subPath: logs/hangfire
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 45678
-            timeoutSeconds: 5
+          # livenessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: 45678
+          #   timeoutSeconds: 5
       volumes:
         - name: hangfireservice-appsettings
           configMap:
