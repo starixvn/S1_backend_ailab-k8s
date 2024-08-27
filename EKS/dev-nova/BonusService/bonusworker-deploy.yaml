@@ -28,28 +28,16 @@ spec:
               memory: "0.5G" 
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: bonusservice-configmap
-                  key: environment
+              value: Development
             - name: ServiceType
               value: Worker
             - name: Brand
               value: Nova
-          volumeMounts:
-            - name: bonusservice-appsettings
-              mountPath: /app/appsettings.Development.json
-              subPath: appsettings.Development.json
+          volumeMounts:            
             - name: bonusservice-pvc
               mountPath: /bonus
               subPath: logs/bonusWorker
       volumes:
-        - name: bonusservice-appsettings
-          configMap:
-            name: bonusservice-configmap
-            items:
-              - key: appsettings.Development
-                path: appsettings.Development.json
         - name: bonusservice-pvc
           persistentVolumeClaim:
             claimName: bonusservice-pvc

@@ -31,18 +31,12 @@ spec:
             - containerPort: 50997
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: bonusservice-configmap
-                  key: environment
+              value: Development
             - name: ServiceType
               value: API
             - name: Brand
               value: Nova
-          volumeMounts:
-            - name: bonusservice-appsettings
-              mountPath: /app/appsettings.Development.json
-              subPath: appsettings.Development.json
+          volumeMounts:         
             - name: bonusservice-pvc
               mountPath: /bonus
               subPath: logs/bonus
@@ -50,13 +44,7 @@ spec:
             httpGet:
               path: /health
               port: 50997
-      volumes:
-        - name: bonusservice-appsettings
-          configMap:
-            name: bonusservice-configmap
-            items:
-              - key: appsettings.Development
-                path: appsettings.Development.json
+      volumes:        
         - name: bonusservice-pvc
           persistentVolumeClaim:
             claimName: bonusservice-pvc
