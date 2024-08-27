@@ -34,28 +34,16 @@ spec:
             - containerPort: 5070
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: adminsite-configmap
-                  key: environment
+              value: Development
             - name: ServiceType
               value: API
             - name: Brand
               value: Nova
-          volumeMounts:
-            - name: adminsite-appsettings
-              mountPath: /app/appsettings.Development.json
-              subPath: appsettings.Development.json
+          volumeMounts:            
             - name: adminsite-pvc
               mountPath: /backendsite
               subPath: logs/backendsite  
-      volumes:
-        - name: adminsite-appsettings
-          configMap:
-            name: adminsite-configmap
-            items:
-              - key: appsettings.Development
-                path: appsettings.Development.json
+      volumes:        
         - name: adminsite-pvc
           persistentVolumeClaim:
             claimName: adminsite-pvc
