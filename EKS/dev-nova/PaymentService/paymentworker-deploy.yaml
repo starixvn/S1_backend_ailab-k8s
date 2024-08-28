@@ -29,28 +29,16 @@ spec:
               memory: "1G" 
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: paymentservice-configmap
-                  key: environment
+              value: Development
             - name: ServiceType
               value: Worker
             - name: Brand
               value: Nova
-          volumeMounts:
-            - name: paymentworker-appsettings
-              mountPath: /app/appsettings.Development.json
-              subPath: appsettings.Development.json
+          volumeMounts:           
             - name: paymentservice-pvc
               mountPath: /payment
               subPath: logs/paymentWorker
-      volumes:
-        - name: paymentworker-appsettings
-          configMap:
-            name: paymentservice-configmap
-            items:
-              - key: appsettings.Development
-                path: appsettings.Development.json
+      volumes:       
         - name: paymentservice-pvc
           persistentVolumeClaim:
             claimName: paymentservice-pvc
