@@ -29,28 +29,16 @@ spec:
               memory: "1.5G"          
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: thirdpartybethistory-configmap
-                  key: environment
+              value: Development
             - name: ServiceType
               value: Worker
             - name: Brand
               value: Nova
-          volumeMounts:
-            - name: thirdpartybethistory-appsettings
-              mountPath: /app/appsettings.Development.json
-              subPath: appsettings.Development.json
+          volumeMounts:            
             - name: thirdpartybethistory-pvc
               mountPath: /bethistory
               subPath: logs/bethistory
       volumes:
-        - name: thirdpartybethistory-appsettings
-          configMap:
-            name: thirdpartybethistory-configmap
-            items:
-              - key: appsettings.Development
-                path: appsettings.Development.json
         - name: thirdpartybethistory-pvc
           persistentVolumeClaim:
             claimName: thirdpartybethistory-pvc
