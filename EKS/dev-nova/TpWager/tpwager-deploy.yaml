@@ -29,28 +29,16 @@ spec:
               memory: "1.5G"
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: tpwager-configmap
-                  key: environment
+              value: Development
             - name: ServiceType
               value: Worker
             - name: Brand
               value: Nova
-          volumeMounts:
-            - name: tpwager-appsettings
-              mountPath: /app/appsettings.Development.json
-              subPath: appsettings.Development.json
+          volumeMounts:            
             - name: tpwager-pvc
               mountPath: /tpwager
               subPath: logs/tpwager
-      volumes:
-        - name: tpwager-appsettings
-          configMap:
-            name: tpwager-configmap
-            items:
-              - key: appsettings.Development
-                path: appsettings.Development.json
+      volumes:      
         - name: tpwager-pvc
           persistentVolumeClaim:
             claimName: tpwager-pvc
