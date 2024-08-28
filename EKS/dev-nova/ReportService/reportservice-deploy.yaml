@@ -31,28 +31,16 @@ spec:
             - containerPort: 8418
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: reportservice-configmap
-                  key: environment
+              value: Development
             - name: ServiceType
               value: API
             - name: Brand
               value: Nova
-          volumeMounts:
-            - name: reportservice-appsettings
-              mountPath: /app/appsettings.Development.json
-              subPath: appsettings.Development.json
+          volumeMounts:            
             - name: reportservice-pvc
               mountPath: /report
               subPath: logs/reportservice
-      volumes:
-        - name: reportservice-appsettings
-          configMap:
-            name: reportservice-configmap
-            items:
-              - key: appsettings.Development
-                path: appsettings.Development.json
+      volumes:        
         - name: reportservice-pvc
           persistentVolumeClaim:
             claimName: reportservice-pvc
