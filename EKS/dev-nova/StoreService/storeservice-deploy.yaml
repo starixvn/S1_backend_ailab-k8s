@@ -31,18 +31,12 @@ spec:
             - containerPort: 51001
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: storeservice-configmap
-                  key: environment
+              value: Development
             - name: ServiceType
               value: API
             - name: Brand
               value: Nova
           volumeMounts:
-            - name: storeservice-appsettings
-              mountPath: /app/appsettings.Development.json
-              subPath: appsettings.Development.json
             - name: storeservice-pvc
               mountPath: /storeservice
               subPath: logs/storeservice
@@ -50,13 +44,7 @@ spec:
             httpGet:
               path: /health
               port: 51001
-      volumes:
-        - name: storeservice-appsettings
-          configMap:
-            name: storeservice-configmap
-            items:
-              - key: appsettings.Development
-                path: appsettings.Development.json
+      volumes:       
         - name: storeservice-pvc
           persistentVolumeClaim:
             claimName: storeservice-pvc
