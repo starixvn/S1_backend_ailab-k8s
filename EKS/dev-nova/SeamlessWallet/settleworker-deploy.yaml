@@ -28,28 +28,16 @@ spec:
               memory: "1.5G" 
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: seamlesswallet-configmap
-                  key: environment
+              value: Development
             - name: ServiceType
               value: Worker
             - name: Brand
               value: Nova
           volumeMounts:
-            - name: settleworker-appsettings
-              mountPath: /app/appsettings.Development.json
-              subPath: appsettings.Development.json
             - name: settleworker-pvc
               mountPath: /settleworker
               subPath: logs/settleworker
-      volumes:
-        - name: settleworker-appsettings
-          configMap:
-            name: seamlesswallet-configmap
-            items:
-              - key: appsettings.Development
-                path: appsettings.Development.json
+      volumes:        
         - name: settleworker-pvc
           persistentVolumeClaim:
             claimName: settleworker-pvc
