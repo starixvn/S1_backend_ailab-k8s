@@ -29,28 +29,16 @@ spec:
               memory: "8G"           
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: thirdpartybethistory-configmap
-                  key: environment
+              value: Production
             - name: ServiceType
               value: Worker
             - name: Brand
               value: Nova
           volumeMounts:
-            - name: thirdpartybethistory-appsettings
-              mountPath: /app/appsettings.Production.json
-              subPath: appsettings.Production.json
             - name: thirdpartybethistory-pvc
               mountPath: /bethistory
               subPath: logs/bethistory
       volumes:
-        - name: thirdpartybethistory-appsettings
-          configMap:
-            name: thirdpartybethistory-configmap
-            items:
-              - key: appsettings.Production
-                path: appsettings.Production.json
         - name: thirdpartybethistory-pvc
           persistentVolumeClaim:
             claimName: thirdpartybethistory-pvc
