@@ -31,18 +31,12 @@ spec:
             - containerPort: 45678
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: hangfireservice-configmap
-                  key: environment
+              value: Production
             - name: Worker
               value: API
             - name: Brand
               value: Nova
           volumeMounts:
-            - name: hangfireservice-appsettings
-              mountPath: /app/appsettings.Production.json
-              subPath: appsettings.Production.json
             - name: hangfireservice-pvc
               mountPath: /hangfire
               subPath: logs/hangfire
@@ -52,12 +46,6 @@ spec:
               port: 45678
             timeoutSeconds: 5
       volumes:
-        - name: hangfireservice-appsettings
-          configMap:
-            name: hangfireservice-configmap
-            items:
-              - key: appsettings.Production
-                path: appsettings.Production.json
         - name: hangfireservice-pvc
           persistentVolumeClaim:
             claimName: hangfireservice-pvc
