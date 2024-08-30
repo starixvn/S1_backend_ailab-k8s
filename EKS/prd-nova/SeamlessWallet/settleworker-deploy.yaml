@@ -29,28 +29,16 @@ spec:
               memory: "8G"
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: seamlesswallet-configmap
-                  key: environment
+              value: Production
             - name: ServiceType
               value: Worker
             - name: Brand
               value: Nova
           volumeMounts:
-            - name: settleworker-appsettings
-              mountPath: /app/appsettings.Production.json
-              subPath: appsettings.Production.json
             - name: settleworker-pvc
               mountPath: /settleworker
               subPath: logs/settleworker
       volumes:
-        - name: settleworker-appsettings
-          configMap:
-            name: seamlesswallet-configmap
-            items:
-              - key: appsettings.Production
-                path: appsettings.Production.json
         - name: settleworker-pvc
           persistentVolumeClaim:
             claimName: settleworker-pvc

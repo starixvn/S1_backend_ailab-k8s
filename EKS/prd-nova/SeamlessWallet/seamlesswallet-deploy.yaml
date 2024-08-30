@@ -31,18 +31,12 @@ spec:
             - containerPort: 59259
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: seamlesswallet-configmap
-                  key: environment
+              value: Production
             - name: ServiceType
               value: API
             - name: Brand
               value: Nova
           volumeMounts:
-            - name: seamlesswallet-appsettings
-              mountPath: /app/appsettings.Production.json
-              subPath: appsettings.Production.json
             - name: seamlesswallet-pvc
               mountPath: /seamlesswallet
               subPath: logs/seamlesswallet
@@ -57,12 +51,6 @@ spec:
             initialDelaySeconds: 10    
       terminationGracePeriodSeconds: 30
       volumes:
-        - name: seamlesswallet-appsettings
-          configMap:
-            name: seamlesswallet-configmap
-            items:
-              - key: appsettings.Production
-                path: appsettings.Production.json
         - name: seamlesswallet-pvc
           persistentVolumeClaim:
             claimName: seamlesswallet-pvc
