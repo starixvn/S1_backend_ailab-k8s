@@ -31,18 +31,12 @@ spec:
             - containerPort: 59359
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: commonservice-configmap
-                  key: environment
+              value: Production
             - name: ServiceType
               value: API
             - name: Brand
               value: Nova
           volumeMounts:
-            - name: commonservice-appsettings
-              mountPath: /app/appsettings.Production.json
-              subPath: appsettings.Production.json
             - name: commonservice-pvc
               mountPath: /common
               subPath: logs/common
@@ -51,12 +45,6 @@ spec:
               path: /health
               port: 59359
       volumes:
-        - name: commonservice-appsettings
-          configMap:
-            name: commonservice-configmap
-            items:
-              - key: appsettings.Production
-                path: appsettings.Production.json
         - name: commonservice-pvc
           persistentVolumeClaim:
             claimName: commonservice-pvc
