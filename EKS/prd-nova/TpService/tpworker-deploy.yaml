@@ -29,28 +29,16 @@ spec:
               memory: "2G"  
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: tpservice-configmap
-                  key: environment
+              value: Production
             - name: ServiceType
               value: Worker
             - name: Brand
               value: Nova
           volumeMounts:
-            - name: tpworker-appsettings
-              mountPath: /app/appsettings.Production.json
-              subPath: appsettings.Production.json
             - name: tpservice-pvc
               mountPath: /tpservice
               subPath: logs/tpserviceWorker
-      volumes:
-        - name: tpworker-appsettings
-          configMap:
-            name: tpservice-configmap
-            items:
-              - key: appsettings.Production
-                path: appsettings.Production.json
+      volumes:       
         - name: tpservice-pvc
           persistentVolumeClaim:
             claimName: tpservice-pvc
