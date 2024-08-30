@@ -31,18 +31,12 @@ spec:
             - containerPort: 51003
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: storehangfireservice-configmap
-                  key: environment
+              value: Production
             - name: Worker
               value: API
             - name: Brand
               value: Nova
           volumeMounts:
-            - name: storehangfireservice-appsettings
-              mountPath: /app/appsettings.Production.json
-              subPath: appsettings.Production.json
             - name: storehangfireservice-pvc
               mountPath: /storeworker
               subPath: logs/storeworker
@@ -51,12 +45,6 @@ spec:
               path: /health
               port: 51003
       volumes:
-        - name: storehangfireservice-appsettings
-          configMap:
-            name: storehangfireservice-configmap
-            items:
-              - key: appsettings.Production
-                path: appsettings.Production.json
         - name: storehangfireservice-pvc
           persistentVolumeClaim:
             claimName: storehangfireservice-pvc
