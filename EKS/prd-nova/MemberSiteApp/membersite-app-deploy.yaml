@@ -38,18 +38,12 @@ spec:
             - containerPort: 80
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: membersiteapp-configmap
-                  key: environment
+              value: Production.APP
             - name: ServiceType
               value: API
             - name: Brand
               value: Nova
           volumeMounts:
-            - name: membersiteapp-appsettings
-              mountPath: /app/appsettings.Production.APP.json
-              subPath: appsettings.Production.APP.json
             - name: membersite-pvc
               mountPath: /membersite
               subPath: logs/membersiteApp
@@ -60,12 +54,6 @@ spec:
             initialDelaySeconds: 15
       terminationGracePeriodSeconds: 90
       volumes:
-        - name: membersiteapp-appsettings
-          configMap:
-            name: membersiteapp-configmap
-            items:
-              - key: appsettings.Production.APP
-                path: appsettings.Production.APP.json
         - name: membersite-pvc
           persistentVolumeClaim:
             claimName: membersite-pvc
