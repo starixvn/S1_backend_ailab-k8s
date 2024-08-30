@@ -44,19 +44,10 @@ spec:
             - name: Brand
               value: Nova
           volumeMounts:
-            - name: membersite-appsettings
-              mountPath: /app/appsettings.Release.json
-              subPath: appsettings.Production.json
             - name: membersite-rls-pvc
               mountPath: /membersite
               subPath: logs/membersite-rls
       volumes:
-        - name: membersite-appsettings
-          configMap:
-            name: membersite-configmap
-            items:
-              - key: appsettings.Production
-                path: appsettings.Production.json
         - name: membersite-rls-pvc
           persistentVolumeClaim:
             claimName: membersite-rls-pvc
