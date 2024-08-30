@@ -37,9 +37,6 @@ spec:
             - name: Brand
               value: Nova
           volumeMounts:
-            - name: tpservice-appsettings
-              mountPath: /app/appsettings.Release.json
-              subPath: appsettings.Production.json
             - name: tpservice-rls-pvc
               mountPath: /tpservice
               subPath: logs/tpservice-rls
@@ -53,12 +50,6 @@ spec:
               port: 55996
             initialDelaySeconds: 10 
       volumes:
-        - name: tpservice-appsettings
-          configMap:
-            name: tpservice-configmap
-            items:
-              - key: appsettings.Production
-                path: appsettings.Production.json
         - name: tpservice-rls-pvc
           persistentVolumeClaim:
             claimName: tpservice-rls-pvc
