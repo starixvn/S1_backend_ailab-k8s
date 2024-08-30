@@ -31,18 +31,12 @@ spec:
             - containerPort: 59159
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: paymentservice-configmap
-                  key: environment
+              value: Production
             - name: ServiceType
               value: API
             - name: Brand
               value: Nova
-          volumeMounts:
-            - name: paymentservice-appsettings
-              mountPath: /app/appsettings.Production.json
-              subPath: appsettings.Production.json
+          volumeMounts:        
             - name: paymentservice-pvc
               mountPath: /payment
               subPath: logs/payment
@@ -55,13 +49,7 @@ spec:
               path: /health
               port: 59159
             initialDelaySeconds: 10  
-      volumes:
-        - name: paymentservice-appsettings
-          configMap:
-            name: paymentservice-configmap
-            items:
-              - key: appsettings.Production
-                path: appsettings.Production.json
+      volumes:     
         - name: paymentservice-pvc
           persistentVolumeClaim:
             claimName: paymentservice-pvc

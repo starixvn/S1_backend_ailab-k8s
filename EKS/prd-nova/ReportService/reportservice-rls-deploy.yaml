@@ -37,19 +37,10 @@ spec:
             - name: Brand
               value: Nova
           volumeMounts:
-            - name: reportservice-appsettings
-              mountPath: /app/appsettings.Release.json
-              subPath: appsettings.Production.json
             - name: reportservice-pvc
               mountPath: /report
               subPath: logs/reportservice-rls
       volumes:
-        - name: reportservice-appsettings
-          configMap:
-            name: reportservice-configmap
-            items:
-              - key: appsettings.Production
-                path: appsettings.Production.json
         - name: reportservice-pvc
           persistentVolumeClaim:
             claimName: reportservice-rls-pvc
