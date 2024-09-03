@@ -75,16 +75,6 @@ spec:
             name: commonservice-service
             port:
               number: 80
-  - host: geoipservice.nova88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: geoipservice-service
-            port:
-              number: 80
   - host: hangfireservice.nova88dev.com
     http:
       paths:
@@ -153,26 +143,6 @@ spec:
         backend:
           service:
             name: reportservice-service 
-            port:
-              number: 80
-  - host: www.n88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: membersite-service
-            port:
-              number: 80
-  - host: m.n88dev.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: membersite-service
             port:
               number: 80
   - host: stag.goal123.com
