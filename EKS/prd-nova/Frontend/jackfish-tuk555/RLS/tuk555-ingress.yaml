@@ -1,0 +1,60 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jackfish-tuk555-rls-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/load-balancer-name: jackfish-tuk555-rls-ingress
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/security-groups: sg-0735eed72bfa965eb,sg-08cbe5aee36025802
+    alb.ingress.kubernetes.io/subnets: subnet-045d980c50e6dc7b4,subnet-056fe0386b9b46a40,subnet-0bcd9c088afc673e6
+    alb.ingress.kubernetes.io/healthcheck-path: /health
+    alb.ingress.kubernetes.io/load-balancer-attributes: deletion_protection.enabled=true
+spec:
+  ingressClassName: alb
+  rules:
+    - http:
+        paths:
+        - path: /en/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80
+        - path: /th/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80
+        - path: /en/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80
+        - path: /th/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80
+        - path: /api/Site/GetSocialChannel
+          pathType: Exact
+          backend:
+            service:
+              name: membersite-rls-service
+              port:
+                number: 80
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: jackfish-tuk555-rls-service
+              port:
+                number: 80
