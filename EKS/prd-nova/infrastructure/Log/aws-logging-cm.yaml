@@ -83,6 +83,17 @@ data:
         Logstash_Format On
         Logstash_Prefix rls-jackfish-tuk555
     
+    [OUTPUT]
+        Name es
+        Match *.jackfish-tuk555-deployment-*.log
+        Host 172.31.48.203
+        Port 9200
+        HTTP_User elastic
+        HTTP_Passwd #WpF&@$h2J8Y6LH5
+        Type _doc
+        Logstash_Format On
+        Logstash_Prefix prod-jackfish-tuk555
+    
   parsers.conf: |    
     [PARSER]
         Name crio
