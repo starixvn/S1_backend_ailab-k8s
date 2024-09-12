@@ -9,4 +9,4 @@ spec:
     protocol: TCP
     targetPort: 5073
   selector:
-    app: jackfish-tuk555
+    app: jackfish-rls-tuk555

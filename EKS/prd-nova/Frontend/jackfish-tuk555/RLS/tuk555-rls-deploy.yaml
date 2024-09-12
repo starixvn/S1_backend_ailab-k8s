@@ -3,18 +3,18 @@ kind: Deployment
 metadata:
   name: jackfish-tuk555-rls-deployment  
   labels:
-    app: jackfish-tuk555
+    app: jackfish-rls-tuk555
     ENV: RLS
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: jackfish-tuk555
+      app: jackfish-rls-tuk555
   revisionHistoryLimit: 5
   template:
     metadata:
       labels:
-        app: jackfish-tuk555
+        app: jackfish-rls-tuk555
         ENV: RLS
     spec:
       containers:
