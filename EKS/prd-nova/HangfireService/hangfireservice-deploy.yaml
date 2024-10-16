@@ -23,10 +23,10 @@ spec:
           resources:
             requests:
               cpu: "2"
-              memory: "4G"
+              memory: "16G"
             limits:
               cpu: "4"
-              memory: "8G"
+              memory: "32G"
           ports:
             - containerPort: 45678
           env:
