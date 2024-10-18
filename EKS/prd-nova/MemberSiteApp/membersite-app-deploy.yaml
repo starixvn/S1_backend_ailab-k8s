@@ -29,11 +29,11 @@ spec:
                 command: ["/bin/sh","-c","sleep 70"]
           resources:
             requests:
-              cpu: "1"
-              memory: "6G"
+              cpu: "0.5"
+              memory: "2G"
             limits:
-              cpu: "2"
-              memory: "12G"
+              cpu: "1"
+              memory: "4G"
           ports:
             - containerPort: 80
           env:
