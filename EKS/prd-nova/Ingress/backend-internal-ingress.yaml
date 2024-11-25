@@ -36,3 +36,14 @@ spec:
             name: storehangfireservice-service
             port:
               number: 80
+
+  - host: reportservice.ailab88.net
+    http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: reportservice-service
+                port:
+                  number: 80
