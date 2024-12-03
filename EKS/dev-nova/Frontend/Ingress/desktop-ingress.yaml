@@ -57,3 +57,139 @@ spec:
               name: jackfish-tuk555-service
               port:
                 number: 80
+    - host: "stage.noble888dev.com"
+      http:
+        paths:
+        - path: /en/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /th/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80                  
+        - path: /en/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /th/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /api/Site/GetSocialChannel
+          pathType: Exact
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80        
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: jackfish-noble888-service
+              port:
+                number: 80
+    - host: "www.noble888dev.com"
+      http:
+        paths:
+        - path: /en/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /th/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80                  
+        - path: /en/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /th/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /api/Site/GetSocialChannel
+          pathType: Exact
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80        
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: jackfish-mobile-noble888-service
+              port:
+                number: 80
+    - host: "m.noble888dev.com"
+      http:
+        paths:
+        - path: /en/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /th/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80                  
+        - path: /en/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /th/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /api/Site/GetSocialChannel
+          pathType: Exact
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80        
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: jackfish-mobile-noble888-service
+              port:
+                number: 80
+    
