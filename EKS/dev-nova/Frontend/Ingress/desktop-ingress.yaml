@@ -144,7 +144,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: jackfish-mobile-noble888-service
+              name: noble888-desktop-service
               port:
                 number: 80
     - host: "m.noble888dev.com"
@@ -189,7 +189,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: jackfish-mobile-noble888-service
+              name: noble888-mobile-service
               port:
                 number: 80
     

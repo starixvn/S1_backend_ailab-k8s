@@ -7,6 +7,6 @@ spec:
   ports:
   - port: 80
     protocol: TCP
-    targetPort: 5073
+    targetPort: 5074
   selector:
     app: noble888-mobile
