@@ -57,7 +57,7 @@ spec:
               name: jackfish-tuk555-service
               port:
                 number: 80
-    - host: "stage.noble888dev.com"
+    - host: "www.noble888dev.com"
       http:
         paths:
         - path: /en/entPage
@@ -67,7 +67,7 @@ spec:
               name: membersite-service
               port:
                 number: 80
-        - path: /th/entPage
+        - path: /ar/entPage
           pathType: Prefix
           backend:
             service:
@@ -81,7 +81,7 @@ spec:
               name: membersite-service
               port:
                 number: 80
-        - path: /th/Cashier
+        - path: /ar/Cashier
           pathType: Prefix
           backend:
             service:
@@ -99,10 +99,10 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: jackfish-noble888-service
+              name: noble888-desktop-service
               port:
                 number: 80
-    - host: "www.noble888dev.com"
+    - host: "stage.noble888dev.com"
       http:
         paths:
         - path: /en/entPage
@@ -112,7 +112,7 @@ spec:
               name: membersite-service
               port:
                 number: 80
-        - path: /th/entPage
+        - path: /ar/entPage
           pathType: Prefix
           backend:
             service:
@@ -126,7 +126,7 @@ spec:
               name: membersite-service
               port:
                 number: 80
-        - path: /th/Cashier
+        - path: /ar/Cashier
           pathType: Prefix
           backend:
             service:
@@ -157,7 +157,7 @@ spec:
               name: membersite-service
               port:
                 number: 80
-        - path: /th/entPage
+        - path: /ar/entPage
           pathType: Prefix
           backend:
             service:
@@ -171,7 +171,7 @@ spec:
               name: membersite-service
               port:
                 number: 80
-        - path: /th/Cashier
+        - path: /ar/Cashier
           pathType: Prefix
           backend:
             service:
