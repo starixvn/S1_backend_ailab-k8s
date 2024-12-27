@@ -191,5 +191,95 @@ spec:
             service:
               name: noble888-mobile-service
               port:
+                number: 80    
+    - host: "www.noble888.net"
+      http:
+        paths:
+        - path: /en/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /ar/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80                  
+        - path: /en/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /ar/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /api/Site/GetSocialChannel
+          pathType: Exact
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80        
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: noble888-desktop-service
+              port:
+                number: 80
+    - host: "m.noble888.net"
+      http:
+        paths:
+        - path: /en/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /ar/entPage
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80                  
+        - path: /en/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /ar/Cashier
+          pathType: Prefix
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80
+        - path: /api/Site/GetSocialChannel
+          pathType: Exact
+          backend:
+            service:
+              name: membersite-service
+              port:
+                number: 80        
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: noble888-mobile-service
+              port:
                 number: 80
     
